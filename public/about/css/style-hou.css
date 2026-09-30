@@ -1,0 +1,423 @@
+@charset "utf-8";
+
+/* =========================================================
+   style-houston.css
+   Houston color version for Standard American Web™
+   Purpose:
+   1) Load the original style.css template rules.
+   2) Override city accents to Houston green #60B416.
+   3) Preserve original preload/page-transition layering.
+   4) Keep header logo at 1.5x size and footer logo at 2x size.
+
+   IMPORTANT:
+   Keep this file in the same folder as style.css, then update
+   the Houston HTML stylesheet reference from:
+   <link rel="stylesheet" href="css/style.css">
+   to:
+   <link rel="stylesheet" href="css/style-houston.css">
+========================================================= */
+
+@import url("style.css");
+
+:root {
+  --city-accent: #60B416;
+  --city-accent-dark: #3F7D0D;
+  --city-accent-soft: rgba(96, 180, 22, 0.14);
+  --city-accent-border: rgba(96, 180, 22, 0.45);
+  --city-accent-shadow: rgba(96, 180, 22, 0.28);
+}
+
+/* =========================================================
+   HOUSTON GREEN ACCENT OVERRIDES
+   Replaces Atlanta red #C60000 / Dallas blue #251BF7 and
+   orange-style accents with Houston green #60B416.
+========================================================= */
+
+/* Core green text accents */
+.base,
+.inline-filter_title,
+.saw-office-region-title span,
+.saw-tw-demo-orange-night__eyebrow,
+.saw-tw-demo-orange-night__demoEyebrow,
+.saw-tw-demo-orange-night__title span,
+.sawbd-awards-accent,
+.sawbd-awards-link,
+.sawbd-awards-link:hover {
+  color: var(--city-accent) !important;
+}
+
+/* Core green backgrounds */
+.color-bg,
+.scroller,
+.inline-filter-panel .gallery-filters a:after,
+.hero-slider_control:before,
+.progress-bar,
+.slide-progress,
+.column-wrap-media_btn,
+.start-btn,
+.hero-bg:before,
+.half-hero-wrap h1:before,
+.hero-section .section-title h2:before,
+.hero-title .section-title h2:before,
+.split-sceen-content_title:before,
+.saw-tw-demo-orange-night__play,
+.saw-tw-demo-orange-night__cta--primary,
+.saw-tw-demo-orange-night .plyr__control--overlaid,
+.saw-tw-demo-orange-night .plyr__control--overlaid:hover {
+  background: var(--city-accent) !important;
+  background-color: var(--city-accent) !important;
+}
+
+/* Core green borders */
+.hero-bg-dec,
+.fixed-column-dec,
+.tabs-menu li.backLava,
+.saw-tw-demo-orange-night,
+.saw-tw-demo-orange-night__videoShell,
+.saw-tw-demo-orange-night__demoWrap,
+.saw-tw-demo-orange-night__bottom,
+.saw-tw-demo-orange-night__avatarWrap,
+.sawbd-awards-link {
+  border-color: var(--city-accent) !important;
+}
+
+/* Green gradients replacing red/blue/orange-start gradients */
+.saw-system-bridge-btn-frontdoor,
+.saw-offices-dropdown .sub-menu li a[href*="standardamericanweb.com/home.html"] {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(96, 180, 22, 1) 0%,
+      rgba(63, 125, 13, 1) 48%,
+      rgba(201, 243, 29, 1) 100%
+    ) !important;
+  border-color: var(--city-accent-border) !important;
+  box-shadow:
+    0 18px 42px rgba(96, 180, 22, 0.20),
+    0 0 30px rgba(96, 180, 22, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.32) !important;
+}
+
+/* Talking Website demo: accent-to-Houston-green conversion */
+.saw-tw-demo-orange-night {
+  border-color: rgba(96, 180, 22, 0.34) !important;
+  box-shadow:
+    0 28px 70px rgba(0, 0, 0, 0.30),
+    0 0 42px rgba(96, 180, 22, 0.10) !important;
+  --plyr-color-main: #60B416 !important;
+}
+
+.saw-tw-demo-orange-night__bg {
+  background:
+    radial-gradient(circle at 14% 16%, rgba(96, 180, 22, 0.22) 0%, rgba(96, 180, 22, 0) 34%),
+    radial-gradient(circle at 88% 12%, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 32%),
+    linear-gradient(180deg, #1A1A1A 0%, #101010 100%) !important;
+}
+
+.saw-tw-demo-orange-night__proof,
+.saw-tw-demo-orange-night__tag {
+  background: rgba(96, 180, 22, 0.13) !important;
+  border-color: rgba(96, 180, 22, 0.24) !important;
+}
+
+.saw-tw-demo-orange-night__demoWrap {
+  border-color: rgba(96, 180, 22, 0.28) !important;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(96, 180, 22, 0.14) 0%, rgba(96, 180, 22, 0) 34%),
+    rgba(255, 255, 255, 0.045) !important;
+}
+
+.saw-tw-demo-orange-night__videoShell {
+  border-color: rgba(96, 180, 22, 0.40) !important;
+  box-shadow:
+    0 28px 70px rgba(0, 0, 0, 0.34),
+    0 0 36px rgba(96, 180, 22, 0.16) !important;
+}
+
+.saw-tw-demo-orange-night__agent:hover .saw-tw-demo-orange-night__agentCard,
+.saw-tw-demo-orange-night__agent.is-active .saw-tw-demo-orange-night__agentCard {
+  border-color: rgba(96, 180, 22, 0.72) !important;
+  background: rgba(96, 180, 22, 0.10) !important;
+  box-shadow:
+    0 20px 44px rgba(0, 0, 0, 0.30),
+    0 0 28px rgba(96, 180, 22, 0.18) !important;
+}
+
+.saw-tw-demo-orange-night__avatarWrap {
+  border-color: rgba(96, 180, 22, 0.24) !important;
+}
+
+.saw-tw-demo-orange-night__play,
+.saw-tw-demo-orange-night__cta--primary,
+.saw-tw-demo-orange-night .plyr__control--overlaid,
+.saw-tw-demo-orange-night .plyr__control--overlaid:hover {
+  background: var(--city-accent) !important;
+  box-shadow: 0 12px 24px rgba(96, 180, 22, 0.28) !important;
+}
+
+.saw-tw-demo-orange-night__bottom {
+  border-color: rgba(96, 180, 22, 0.30) !important;
+}
+
+.saw-tw-demo-orange-night .plyr--full-ui input[type="range"] {
+  color: var(--city-accent) !important;
+}
+
+/* =========================================================
+   HEADER LOGO SIZE CHANGE START
+   Requested change:
+   The original uploaded style.css sets the top header logo image
+   to height:26px with width:auto.
+
+   This city override increases the top logo to 1.5x size:
+   26px × 1.5 = 39px tall.
+   Width scales proportionally because width remains auto.
+========================================================= */
+
+header.main-header .header-logo,
+.main-header .header-logo,
+.header-logo {
+  top: 25px !important;
+  overflow: visible !important;
+}
+
+header.main-header .header-logo img,
+.main-header .header-logo img,
+.header-logo img {
+  height: 39px !important;
+  width: auto !important;
+  max-height: none !important;
+  max-width: none !important;
+  object-fit: contain !important;
+}
+
+/* =========================================================
+   HEADER LOGO SIZE CHANGE END
+   Top logo is now forced to 39px tall, which is 1.5x the
+   original 26px header logo height in the uploaded style.css.
+========================================================= */
+
+/* =========================================================
+   FOOTER LOGO SIZE CHANGE START
+   Requested change:
+   The original uploaded style.css sets .footer-logo to height:30px
+   and .footer-logo img to height:100%; width:auto.
+
+   This city override doubles the footer logo display size to 60px tall.
+   The image keeps width:auto, so the width doubles proportionally.
+
+   IMPORTANT:
+   For this to work, style-houston.css must load AFTER any file that defines
+   .footer-logo, or it must replace style.css entirely.
+========================================================= */
+
+.main-footer .footer-logo,
+footer.main-footer .footer-logo,
+.footer-logo {
+  float: left !important;
+  display: block !important;
+  height: 60px !important;
+  min-height: 60px !important;
+  max-height: none !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  overflow: visible !important;
+}
+
+.main-footer .footer-logo img,
+footer.main-footer .footer-logo img,
+.footer-logo img {
+  display: block !important;
+  float: left !important;
+  height: 60px !important;
+  min-height: 60px !important;
+  max-height: none !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  object-fit: contain !important;
+}
+
+/* Optional spacing correction so the doubled logo does not crowd the text below it. */
+.main-footer .footer-logo + .footer_text,
+footer.main-footer .footer-logo + .footer_text,
+.footer-logo + .footer_text {
+  margin-top: 70px !important;
+}
+
+/* =========================================================
+   FOOTER LOGO SIZE CHANGE END
+   Footer logo is now forced to 60px tall, which is 2x the
+   original 30px footer logo height in the uploaded style.css.
+========================================================= */
+
+/* Additional footer green polish */
+.footer_text:before,
+.footer-header:before,
+.fc_button:before,
+.to-top-btn:before {
+  background: var(--city-accent) !important;
+  background-color: var(--city-accent) !important;
+}
+
+.footer_text font,
+.footer-contacts li i,
+.fc_button:hover,
+.to-top-btn:hover {
+  color: var(--city-accent) !important;
+}
+
+/* Green hover/focus states */
+a:hover,
+.sliding-menu a:hover,
+.nav-social li a:hover,
+.left-panel_social li a:hover,
+.footer-contacts li a:hover,
+.policy-box a:hover {
+  color: var(--city-accent) !important;
+}
+
+/* Selection color */
+::selection {
+  background: var(--city-accent);
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background: var(--city-accent);
+  color: #ffffff;
+}
+
+/* =========================================================
+   PRELOAD / PAGE TRANSITION COLOR FIX START
+   Purpose:
+   The original template uses a layered preload/page-transition system:
+   - .loader2 uses dark charcoal #2D2D32
+   - .page-load_bg uses dark charcoal #2D2D32
+   - .page-load_bg2 uses gray #35353A
+   - .pr-bg uses dark charcoal #2A2A2E
+   - .pr-bg-white stays white #FFFFFF
+
+   Do NOT turn these transition panels green. If all of these panels
+   become green, the load animation looks broken instead of layered.
+========================================================= */
+
+.loader2 {
+  background: #2D2D32 !important;
+}
+
+.page-load_bg {
+  background: #2D2D32 !important;
+  background-color: #2D2D32 !important;
+}
+
+.page-load_bg2 {
+  background: #35353A !important;
+  background-color: #35353A !important;
+}
+
+.pr-bg {
+  background: #2A2A2E !important;
+  background-color: #2A2A2E !important;
+}
+
+.pr-bg.pr-bg-white {
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+}
+
+.loader span:before {
+  border-color: rgba(255, 255, 255, 0.21) !important;
+  border-bottom-color: transparent !important;
+}
+
+.loader span:after {
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+}
+
+/* Keep only the intentional accent pieces green during transition/navigation. */
+.color-bg,
+.scroll-nav-wrap.color-bg,
+.nav-button-wrap:before,
+.header-contacts li:before,
+.lang-links:before,
+.fixed-filter-panel.fw-panel:after,
+.folio-counter div.all-album:before,
+.round-counter div.all-album:before,
+.hero-bg:before,
+.hero-start-link:after,
+.hero-section .section-title h2:before,
+.hero-title .section-title h2:before,
+.half-hero-wrap h1:before,
+.fixed-column-wrap_title h2:before,
+.split-sceen-content_title:before,
+.inline-filter_title,
+.inline-filter-panel .gallery-filters a:after,
+.progress-bar,
+.slide-progress,
+.scroller {
+  background: var(--city-accent) !important;
+  background-color: var(--city-accent) !important;
+}
+
+/* =========================================================
+   PRELOAD / PAGE TRANSITION COLOR FIX END
+   The transition keeps its original charcoal/gray/white layering,
+   while only intended accent elements use Houston green #60B416.
+========================================================= */
+
+/* =========================================================
+   FOOTER CONTACT ICON FIX START
+   Purpose:
+   Prevents the footer contact icons for phone, email, and address
+   from becoming full green square blocks. The icon glyph should use
+   Houston green, but the icon background should stay transparent.
+========================================================= */
+
+.main-footer .footer-contacts li i,
+footer.main-footer .footer-contacts li i,
+.footer-contacts li i {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: var(--city-accent) !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  width: auto !important;
+  min-width: 0 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  line-height: inherit !important;
+  display: inline-block !important;
+  margin-right: 10px !important;
+}
+
+.main-footer .footer-contacts li i::before,
+footer.main-footer .footer-contacts li i::before,
+.footer-contacts li i::before {
+  color: var(--city-accent) !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Protect against broad accent background utility overrides landing on icon elements. */
+.main-footer .footer-contacts li i.color-bg,
+footer.main-footer .footer-contacts li i.color-bg,
+.footer-contacts li i.color-bg {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* =========================================================
+   FOOTER CONTACT ICON FIX END
+   Icons remain green, but no green square background appears.
+========================================================= */
+
+/* =========================================================
+   NOTE:
+   This file cannot override color values hardcoded directly
+   inside HTML inline style attributes such as:
+   style="color:#C60000" or style="background:#C60000".
+   Those must be replaced in the HTML itself for Houston.
+========================================================= */

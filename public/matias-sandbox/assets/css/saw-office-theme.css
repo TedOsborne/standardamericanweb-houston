@@ -1,0 +1,582 @@
+/* =========================================================
+   SAW OFFICE THEME CSS
+   Source: index-CSS-Removed.html
+   Purpose: color, gradients, borders, shadows, typography weight,
+   text treatment, visual identity, and office-specific look.
+
+   Biloxi / current office theme base:
+   Neon Green: #C9F31D
+   Green Mid: #3DA500
+   Green Dark: #598600
+   Dark Smoke: #1A1A1A
+   White: #FFFFFF
+========================================================= */
+
+:root {
+  --saw-office-accent: #C9F31D;
+  --saw-office-accent-mid: #3DA500;
+  --saw-office-accent-dark: #598600;
+  --saw-office-dark: #1A1A1A;
+  --saw-office-black: #080808;
+  --saw-office-white: #FFFFFF;
+  --saw-office-copy-dark: #111111;
+  --saw-office-copy-muted: rgba(17, 17, 17, 0.78);
+  --saw-office-copy-light: rgba(255, 255, 255, 0.78);
+  --saw-office-line-light: rgba(255, 255, 255, 0.10);
+  --saw-office-line-dark: rgba(0, 0, 0, 0.09);
+  --saw-office-accent-line: rgba(201, 243, 29, 0.34);
+  --saw-office-accent-glow: rgba(201, 243, 29, 0.24);
+  --saw-office-blue: #005bf7;
+}
+
+body {
+  background-color: #000;
+}
+
+/* =========================
+   BANNER VIDEO THEME
+========================= */
+.saw-banner-video-overlay {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* =========================
+   HEADER / NAV THEME
+========================= */
+.main-menu > li > a {
+  color: var(--saw-office-white);
+  font-weight: 700;
+}
+
+.main-menu > li > a::after {
+  background: var(--saw-office-accent);
+  background: linear-gradient(
+    90deg,
+    rgba(201, 243, 29, 1) 12%,
+    rgba(61, 165, 0, 1) 76%,
+    rgba(89, 134, 0, 1) 100%
+  );
+}
+
+.main-menu > li:hover > a,
+.main-menu > li:focus-within > a {
+  color: var(--saw-office-accent) !important;
+  font-weight: 900 !important;
+  text-shadow: 0 0 18px rgba(201, 243, 29, 0.32);
+}
+
+.main-menu > li.has-dropdown > a .dropdown-caret {
+  color: var(--saw-office-accent);
+}
+
+.main-menu .sub-menu {
+  border: 1px solid rgba(201, 243, 29, 0.32);
+  background:
+    radial-gradient(circle at top left, rgba(201, 243, 29, 0.20), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(61, 165, 0, 0.18), transparent 38%),
+    linear-gradient(145deg, rgba(26, 26, 26, 0.98), rgba(8, 10, 8, 0.97));
+  box-shadow:
+    0 28px 75px rgba(0, 0, 0, 0.52),
+    0 0 34px rgba(201, 243, 29, 0.12),
+    0 0 0 1px rgba(255, 255, 255, 0.045),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.main-menu .sub-menu::before {
+  background: rgba(18, 20, 18, 0.98);
+  border-left: 1px solid rgba(201, 243, 29, 0.28);
+  border-top: 1px solid rgba(201, 243, 29, 0.28);
+}
+
+.main-menu .sub-menu li a {
+  color: rgba(255, 255, 255, 0.90);
+  font-weight: 750;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.main-menu .sub-menu li a::before {
+  background: var(--saw-office-accent);
+  background: linear-gradient(
+    90deg,
+    rgba(201, 243, 29, 1) 12%,
+    rgba(61, 165, 0, 1) 76%,
+    rgba(89, 134, 0, 1) 100%
+  );
+  box-shadow:
+    0 0 14px rgba(201, 243, 29, 0.72),
+    0 0 24px rgba(61, 165, 0, 0.30);
+}
+
+.main-menu .sub-menu li a::after {
+  color: var(--saw-office-accent);
+}
+
+.main-menu .sub-menu li a:hover,
+.main-menu .sub-menu li a:focus {
+  color: #1A1A1A !important;
+  font-weight: 900 !important;
+  text-shadow: none !important;
+  background: var(--saw-office-accent) !important;
+  background: linear-gradient(
+    90deg,
+    rgba(201, 243, 29, 1) 12%,
+    rgba(61, 165, 0, 1) 76%,
+    rgba(89, 134, 0, 1) 100%
+  ) !important;
+  border-color: rgba(201, 243, 29, 0.95) !important;
+  box-shadow:
+    0 14px 34px rgba(0, 0, 0, 0.34),
+    0 0 28px rgba(201, 243, 29, 0.34) !important;
+}
+
+.main-menu .sub-menu li a:hover::before,
+.main-menu .sub-menu li a:focus::before,
+.main-menu .sub-menu li.menu-featured a::before {
+  background: #1A1A1A !important;
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.32),
+    0 0 18px rgba(201, 243, 29, 0.65) !important;
+}
+
+.main-menu .sub-menu li a:hover::after,
+.main-menu .sub-menu li a:focus::after,
+.main-menu .sub-menu li.menu-featured a::after {
+  color: #1A1A1A !important;
+  font-weight: 900 !important;
+}
+
+.main-menu .sub-menu li.menu-featured a {
+  color: #1A1A1A !important;
+  font-weight: 900 !important;
+  text-shadow: none !important;
+  background: var(--saw-office-accent) !important;
+  background: linear-gradient(
+    90deg,
+    rgba(201, 243, 29, 1) 12%,
+    rgba(61, 165, 0, 1) 76%,
+    rgba(89, 134, 0, 1) 100%
+  ) !important;
+  border-color: rgba(201, 243, 29, 0.95) !important;
+  box-shadow:
+    0 14px 34px rgba(0, 0, 0, 0.34),
+    0 0 28px rgba(201, 243, 29, 0.34) !important;
+}
+
+.main-menu .sub-menu li.menu-divider {
+  border-top: 1px solid rgba(201, 243, 29, 0.18);
+}
+
+/* =========================
+   SOCIAL PROOF THEME
+========================= */
+.social-proof-face {
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.10);
+  background: #fff;
+}
+
+.social-proof-text {
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.2;
+}
+
+.social-proof-stars {
+  background: #ff6600;
+  color: #fff;
+}
+
+/* =========================
+   PROMO / WEBSITE SALES THEME
+========================= */
+#promo-499 {
+  background: #fff;
+  color: #111;
+}
+
+#promo-499 .saw-wide-media img {
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.35);
+}
+
+#promo-499 .saw-preview-caption {
+  color: #1A1A1A;
+}
+
+#promo-499 .saw-eyebrow {
+  font-weight: 900;
+  background: rgba(201, 243, 29, 0.16);
+  border: 1px solid rgba(201, 243, 29, 0.45);
+  color: #1A1A1A;
+}
+
+#promo-499 .saw-title {
+  font-weight: 950;
+  color: #111;
+}
+
+#promo-499 .saw-copy {
+  color: rgba(17, 17, 17, 0.86);
+}
+
+#promo-499 .saw-build-card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.09);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
+}
+
+#promo-499 .saw-build-card::before {
+  background: linear-gradient(
+    90deg,
+    rgba(201, 243, 29, 1) 12%,
+    rgba(61, 165, 0, 1) 76%,
+    rgba(89, 134, 0, 1) 100%
+  );
+}
+
+#promo-499 .saw-build-card-featured {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fdf0 100%);
+  border-color: rgba(201, 243, 29, 0.48);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.11);
+}
+
+#promo-499 .saw-build-icon {
+  background: #1A1A1A;
+  color: #c9f31d;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
+}
+
+#promo-499 .saw-build-card h2 {
+  color: #111;
+  font-weight: 950;
+}
+
+#promo-499 .saw-build-card p {
+  color: rgba(17, 17, 17, 0.78);
+}
+
+#promo-499 .saw-build-card li {
+  color: rgba(17, 17, 17, 0.86);
+  font-weight: 650;
+}
+
+#promo-499 .saw-build-card li::before {
+  color: #3DA500;
+  font-weight: 950;
+}
+
+#promo-499 .saw-price-line span {
+  color: rgba(17, 17, 17, 0.60);
+  font-size: 0.9rem;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+#promo-499 .saw-price-line strong {
+  color: #1A1A1A;
+  font-weight: 950;
+}
+
+#promo-499 .saw-transition-panel {
+  background: #1A1A1A;
+  color: #fff;
+  border: 1px solid rgba(201, 243, 29, 0.38);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18);
+}
+
+#promo-499 .saw-transition-icon {
+  background: rgba(201, 243, 29, 0.13);
+  color: #c9f31d;
+  border: 1px solid rgba(201, 243, 29, 0.32);
+}
+
+#promo-499 .saw-transition-panel h2 {
+  color: #fff;
+  font-weight: 950;
+}
+
+#promo-499 .saw-transition-panel p {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+#promo-499 .saw-btn {
+  font-weight: 950;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.14);
+}
+
+#promo-499 .saw-btn:hover {
+  filter: brightness(1.02);
+}
+
+#promo-499 .saw-btn-primary {
+  color: #1A1A1A;
+  background: linear-gradient(
+    90deg,
+    rgba(201, 243, 29, 1) 12%,
+    rgba(61, 165, 0, 1) 76%,
+    rgba(89, 134, 0, 1) 100%
+  );
+}
+
+#promo-499 .saw-btn-secondary {
+  color: #111;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.10);
+}
+
+#promo-499 .saw-btn-blue {
+  color: #fff !important;
+  background: linear-gradient(135deg, #005bf7 0%, #193774 100%);
+  border: 1px solid rgba(0, 91, 247, 0.55);
+}
+
+#promo-499 .saw-btn-outline {
+  background: #fff;
+  color: #005bf7 !important;
+  border: 2px solid rgba(0, 91, 247, 0.55);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.10);
+}
+
+#promo-499 .saw-note {
+  color: rgba(17, 17, 17, 0.68);
+}
+
+#promo-499 .saw-divider {
+  background: rgba(0, 0, 0, 0.10);
+}
+
+#promo-499 .saw-h2 {
+  font-weight: 950;
+  color: #111;
+}
+
+#promo-499 .saw-muted {
+  color: rgba(17, 17, 17, 0.68);
+}
+
+#promo-499 .saw-feature {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+}
+
+#promo-499 .saw-feature h3 {
+  font-weight: 950;
+  color: #111;
+}
+
+#promo-499 .saw-badge {
+  font-weight: 950;
+  background: rgba(201, 243, 29, 0.20);
+  border: 1px solid rgba(61, 165, 0, 0.30);
+  color: #1A1A1A;
+}
+
+#promo-499 .saw-feature li {
+  color: rgba(17, 17, 17, 0.84);
+}
+
+#promo-499 .saw-feature li::before {
+  font-weight: 950;
+  color: #09c509;
+}
+
+#promo-499 .saw-tw-block {
+  background: linear-gradient(180deg, #ffffff 0%, #fbfbff 100%);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 16px 46px rgba(0, 0, 0, 0.10);
+}
+
+#promo-499 .saw-tw-media img {
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.18);
+}
+
+#promo-499 .saw-tw-caption {
+  font-weight: 900;
+  color: #1A1A1A;
+}
+
+#promo-499 .saw-tw-h2 {
+  font-weight: 950;
+  color: #111;
+}
+
+#promo-499 .saw-tw-copy {
+  color: rgba(17, 17, 17, 0.84);
+}
+
+#promo-499 .saw-tw-highlight {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+}
+
+#promo-499 .saw-tw-highlight i {
+  background: rgba(0, 91, 247, 0.08);
+  color: #005bf7;
+}
+
+#promo-499 .saw-tw-highlight h3 {
+  color: #111;
+  font-weight: 950;
+}
+
+#promo-499 .saw-tw-highlight p {
+  color: rgba(17, 17, 17, 0.76);
+}
+
+/* =========================
+   COMPLETE SYSTEM ADDON THEME
+========================= */
+.saw-complete-system-addon {
+  background:
+    radial-gradient(circle at 10% 10%, rgba(201, 243, 29, 0.20), transparent 32%),
+    radial-gradient(circle at 92% 8%, rgba(61, 165, 0, 0.18), transparent 34%),
+    linear-gradient(145deg, #1A1A1A 0%, #080808 68%, #12160d 100%);
+  border: 1px solid rgba(201, 243, 29, 0.34);
+  box-shadow:
+    0 32px 90px rgba(0, 0, 0, 0.48),
+    0 0 42px rgba(201, 243, 29, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.saw-complete-system-addon__accent-line {
+  background: var(--saw-office-accent);
+  background: linear-gradient(
+    90deg,
+    rgba(201, 243, 29, 0) 0%,
+    rgba(201, 243, 29, 1) 18%,
+    rgba(61, 165, 0, 1) 76%,
+    rgba(89, 134, 0, 0) 100%
+  );
+  box-shadow: 0 0 30px rgba(201, 243, 29, 0.65);
+}
+
+.saw-complete-system-addon__pattern {
+  background-image: radial-gradient(circle at 1px 1px, rgba(201, 243, 29, 0.50) 1px, transparent 0);
+}
+
+.saw-complete-system-addon__eyebrow {
+  background: rgba(201, 243, 29, 0.10);
+  border: 1px solid rgba(201, 243, 29, 0.28);
+  color: #C9F31D;
+  font-weight: 950;
+}
+
+.saw-complete-system-addon h3,
+.saw-complete-system-addon h4 {
+  color: #FFFFFF;
+  font-weight: 950;
+}
+
+.saw-complete-system-addon h3 span,
+.saw-complete-system-addon .saw-highlight {
+  color: #C9F31D;
+  text-shadow: 0 0 24px rgba(201, 243, 29, 0.28);
+}
+
+.saw-complete-system-addon p {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.saw-complete-system-addon strong {
+  color: #FFFFFF;
+}
+
+.saw-complete-system-addon__price {
+  background: #C9F31D;
+  background: linear-gradient(
+    90deg,
+    rgba(201, 243, 29, 1) 12%,
+    rgba(61, 165, 0, 1) 76%,
+    rgba(89, 134, 0, 1) 100%
+  );
+  color: #1A1A1A;
+  box-shadow:
+    0 16px 36px rgba(0, 0, 0, 0.34),
+    0 0 30px rgba(201, 243, 29, 0.24);
+}
+
+.saw-complete-system-addon__card {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.035));
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  box-shadow:
+    0 18px 44px rgba(0, 0, 0, 0.23),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.saw-complete-system-addon__card--featured {
+  background:
+    radial-gradient(circle at top right, rgba(201, 243, 29, 0.20), transparent 42%),
+    linear-gradient(145deg, rgba(201, 243, 29, 0.14), rgba(255, 255, 255, 0.04));
+  border: 1px solid rgba(201, 243, 29, 0.32);
+  box-shadow:
+    0 18px 44px rgba(0, 0, 0, 0.23),
+    0 0 32px rgba(201, 243, 29, 0.11),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.saw-complete-system-addon__icon {
+  background: rgba(201, 243, 29, 0.13);
+  border: 1px solid rgba(201, 243, 29, 0.30);
+  color: #C9F31D;
+  box-shadow:
+    0 0 0 8px rgba(201, 243, 29, 0.055),
+    0 0 28px rgba(201, 243, 29, 0.16);
+}
+
+.saw-complete-system-addon__card--featured .saw-complete-system-addon__icon {
+  background: rgba(201, 243, 29, 0.16);
+  border: 1px solid rgba(201, 243, 29, 0.34);
+  box-shadow:
+    0 0 0 8px rgba(201, 243, 29, 0.06),
+    0 0 28px rgba(201, 243, 29, 0.18);
+}
+
+.saw-complete-system-addon__cta {
+  background: #C9F31D;
+  background: linear-gradient(
+    90deg,
+    rgba(201, 243, 29, 1) 12%,
+    rgba(61, 165, 0, 1) 76%,
+    rgba(89, 134, 0, 1) 100%
+  );
+  color: #1A1A1A;
+  font-size: 15px;
+  font-weight: 950;
+  box-shadow:
+    0 16px 34px rgba(0, 0, 0, 0.34),
+    0 0 28px rgba(201, 243, 29, 0.25);
+}
+
+/* =========================
+   INLINE UTILITY THEME HELPERS
+   Use while cleaning inline styles gradually.
+========================= */
+.saw-text-white { color: #FFFFFF !important; }
+.saw-text-accent { color: #C9F31D !important; }
+.saw-text-dark { color: #1A1A1A !important; }
+.saw-bg-dark { background: #1A1A1A !important; }
+.saw-bg-white { background: #FFFFFF !important; }
+.saw-bg-accent-gradient {
+  background: linear-gradient(
+    90deg,
+    rgba(201, 243, 29, 1) 12%,
+    rgba(61, 165, 0, 1) 76%,
+    rgba(89, 134, 0, 1) 100%
+  ) !important;
+}
+
+.saw-shadow-soft {
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.14) !important;
+}
+
+.saw-shadow-accent {
+  box-shadow:
+    0 16px 34px rgba(0, 0, 0, 0.34),
+    0 0 28px rgba(201, 243, 29, 0.25) !important;
+}

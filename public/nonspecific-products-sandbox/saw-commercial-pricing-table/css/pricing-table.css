@@ -1,0 +1,750 @@
+
+/* =========================================================
+   Standard American Web™ Commercial Pricing Table
+   Source design basis: Commercial Pricing Table / Design 2 / Layout 1
+   Scoped for SAW so it does not alter the parent website.
+========================================================= */
+
+#saw-commercial-pricing {
+  --saw-price-charcoal:#2B2B2B;
+  --saw-price-charcoal-deep:#1A1A1A;
+  --saw-price-copper:#B87333;
+  --saw-price-copper-dark:#7A3F18;
+  --saw-price-copper-light:#D5965B;
+  --saw-price-yellow:#F7B11A;
+  --saw-price-paper:#F7F7F7;
+  --saw-price-white:#FFFFFF;
+  --saw-price-muted:#6D6D6D;
+  --saw-price-line:#E9E2DB;
+  padding:56px 0 70px;
+  background:var(--saw-price-paper);
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+#saw-commercial-pricing,
+#saw-commercial-pricing * {
+  box-sizing:border-box;
+}
+
+#saw-commercial-pricing .saw-pricing-wrap {
+  width:min(1500px,calc(100% - 32px));
+  margin:0 auto;
+}
+
+#saw-commercial-pricing .saw-pricing-head {
+  max-width:960px;
+  margin:0 auto 34px;
+  text-align:center;
+}
+
+#saw-commercial-pricing .saw-pricing-eyebrow {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  margin-bottom:11px;
+  color:var(--saw-price-copper);
+  font-size:12px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+}
+
+#saw-commercial-pricing .saw-pricing-head h2 {
+  margin:0;
+  color:var(--saw-price-charcoal);
+  font-size:clamp(34px,4vw,56px);
+  line-height:1.02;
+  letter-spacing:-.045em;
+  font-weight:950;
+}
+
+#saw-commercial-pricing .saw-pricing-head p {
+  margin:15px auto 0;
+  max-width:860px;
+  color:#5C5149;
+  font-size:17px;
+  line-height:1.65;
+}
+
+#saw-commercial-pricing .saw-pricing-grid {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:18px;
+  align-items:start;
+}
+
+#saw-commercial-pricing .pricing-block {
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+  overflow:hidden;
+  border-top:5px solid var(--saw-price-copper);
+  border-radius:0 0 18px 18px;
+  background:#fff;
+  box-shadow:0 16px 46px rgba(43,43,43,.10);
+  transition:transform .22s ease,box-shadow .22s ease,background .22s ease;
+}
+
+#saw-commercial-pricing .pricing-block:hover,
+#saw-commercial-pricing .pricing-block.enable {
+  background:var(--saw-price-charcoal);
+  color:#fff;
+  transform:translateY(-4px);
+  box-shadow:0 24px 60px rgba(43,43,43,.22);
+}
+
+#saw-commercial-pricing .pricing-block.enable {
+  border-top-color:var(--saw-price-yellow);
+}
+
+#saw-commercial-pricing .featured-label {
+  position:absolute;
+  top:0;
+  right:0;
+  z-index:3;
+}
+
+#saw-commercial-pricing .featured-label p {
+  position:relative;
+  margin:0;
+  padding:8px 12px 8px 16px;
+  background:var(--saw-price-yellow);
+  color:#1A1A1A;
+  font-size:10px;
+  line-height:1;
+  font-weight:950;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+#saw-commercial-pricing .featured-label p::before {
+  content:"";
+  position:absolute;
+  left:-10px;
+  top:0;
+  border-top:10px solid var(--saw-price-paper);
+  border-left:10px solid var(--saw-price-yellow);
+}
+
+#saw-commercial-pricing .head {
+  min-height:154px;
+  padding:28px 20px 18px;
+}
+
+#saw-commercial-pricing .head h3 {
+  margin:0;
+  color:var(--saw-price-charcoal);
+  font-size:26px;
+  line-height:1.04;
+  letter-spacing:-.035em;
+  font-weight:950;
+}
+
+#saw-commercial-pricing .head h3 span {
+  display:block;
+  margin-bottom:5px;
+  color:var(--saw-price-copper);
+  font-size:12px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+#saw-commercial-pricing .head p {
+  margin:12px 0 0;
+  color:#8C847E;
+  font-size:13px;
+  line-height:1.45;
+}
+
+#saw-commercial-pricing .pricing-block:hover .head h3,
+#saw-commercial-pricing .pricing-block:hover .head h3 span,
+#saw-commercial-pricing .pricing-block:hover .head p,
+#saw-commercial-pricing .pricing-block.enable .head h3,
+#saw-commercial-pricing .pricing-block.enable .head p {
+  color:#fff;
+}
+
+#saw-commercial-pricing .pricing-block.enable .head h3 span {
+  color:var(--saw-price-yellow);
+}
+
+#saw-commercial-pricing .currency {
+  padding:18px 20px 16px;
+  background:rgba(184,115,51,.08);
+  border-top:1px solid rgba(184,115,51,.12);
+  border-bottom:1px solid rgba(184,115,51,.12);
+}
+
+#saw-commercial-pricing .pricing-block:hover .currency,
+#saw-commercial-pricing .pricing-block.enable .currency {
+  background:rgba(255,255,255,.08);
+  border-color:rgba(255,255,255,.08);
+}
+
+#saw-commercial-pricing .currency-main {
+  display:flex;
+  align-items:flex-start;
+  gap:2px;
+  margin:0;
+  color:var(--saw-price-charcoal);
+  line-height:1;
+}
+
+#saw-commercial-pricing .sign {
+  margin-top:7px;
+  font-size:19px;
+  font-weight:900;
+}
+
+#saw-commercial-pricing .cost {
+  font-size:52px;
+  line-height:.88;
+  font-weight:950;
+  letter-spacing:-.06em;
+}
+
+#saw-commercial-pricing .period {
+  align-self:flex-end;
+  margin:0 0 4px 6px;
+  color:#8A8078;
+  font-size:11px;
+  font-weight:850;
+  line-height:1.2;
+}
+
+#saw-commercial-pricing .pricing-block:hover .currency-main,
+#saw-commercial-pricing .pricing-block.enable .currency-main,
+#saw-commercial-pricing .pricing-block:hover .period,
+#saw-commercial-pricing .pricing-block.enable .period {
+  color:#fff;
+}
+
+#saw-commercial-pricing .full-price {
+  margin:10px 0 0;
+  color:#5D5147;
+  font-size:12px;
+  line-height:1.4;
+  font-weight:800;
+}
+
+#saw-commercial-pricing .full-price strong {
+  color:var(--saw-price-copper-dark);
+  font-weight:950;
+}
+
+#saw-commercial-pricing .pricing-block:hover .full-price,
+#saw-commercial-pricing .pricing-block:hover .full-price strong,
+#saw-commercial-pricing .pricing-block.enable .full-price,
+#saw-commercial-pricing .pricing-block.enable .full-price strong {
+  color:#fff;
+}
+
+#saw-commercial-pricing .savings {
+  margin:10px 0 0;
+  font-size:11px;
+  font-weight:850;
+  color:#766B62;
+}
+
+#saw-commercial-pricing .savings span {
+  display:inline-flex;
+  margin-left:5px;
+  padding:4px 7px;
+  background:var(--saw-price-yellow);
+  color:#1A1A1A;
+  border-radius:4px;
+  font-weight:950;
+}
+
+#saw-commercial-pricing .pricing-description {
+  padding:16px 20px;
+  background:var(--saw-price-charcoal);
+}
+
+#saw-commercial-pricing .pricing-description p {
+  margin:0;
+  color:#fff;
+  font-size:13px;
+  line-height:1.55;
+}
+
+#saw-commercial-pricing .feature-heading {
+  margin:0;
+  padding:14px 18px 10px;
+  color:var(--saw-price-copper);
+  font-size:10px;
+  line-height:1;
+  font-weight:950;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+#saw-commercial-pricing .pricing-block:hover .feature-heading,
+#saw-commercial-pricing .pricing-block.enable .feature-heading {
+  color:var(--saw-price-yellow);
+}
+
+#saw-commercial-pricing .feature-list {
+  list-style:none;
+  margin:0;
+  padding:0;
+  flex:1;
+}
+
+#saw-commercial-pricing .feature-list li {
+  display:flex;
+  align-items:flex-start;
+  gap:9px;
+  min-height:44px;
+  padding:11px 16px;
+  border-bottom:1px solid var(--saw-price-line);
+  color:#3B3632;
+  font-size:12px;
+  line-height:1.42;
+  font-weight:700;
+}
+
+#saw-commercial-pricing .feature-list li:last-child {
+  border-bottom:0;
+}
+
+#saw-commercial-pricing .feature-list li:hover {
+  background:#F1ECE7;
+}
+
+#saw-commercial-pricing .pricing-block:hover .feature-list li,
+#saw-commercial-pricing .pricing-block.enable .feature-list li {
+  border-color:rgba(255,255,255,.09);
+  color:#fff;
+}
+
+#saw-commercial-pricing .pricing-block:hover .feature-list li:hover,
+#saw-commercial-pricing .pricing-block.enable .feature-list li:hover {
+  background:rgba(255,255,255,.08);
+}
+
+#saw-commercial-pricing .feature-icon {
+  flex:0 0 22px;
+  width:22px;
+  height:22px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:-1px;
+  border-radius:4px;
+  background:var(--saw-price-charcoal);
+  color:#fff;
+  font-size:10px;
+  font-weight:950;
+}
+
+#saw-commercial-pricing .pricing-block:hover .feature-icon,
+#saw-commercial-pricing .pricing-block.enable .feature-icon {
+  background:var(--saw-price-copper);
+}
+
+#saw-commercial-pricing .pricing-block.enable .feature-icon {
+  background:var(--saw-price-yellow);
+  color:#1A1A1A;
+}
+
+#saw-commercial-pricing .capability-note {
+  margin:0;
+  padding:14px 16px;
+  background:#FFF8E8;
+  color:#6B572B;
+  border-top:1px solid rgba(247,177,26,.35);
+  font-size:11px;
+  line-height:1.5;
+  font-weight:750;
+}
+
+#saw-commercial-pricing .pricing-block:hover .capability-note,
+#saw-commercial-pricing .pricing-block.enable .capability-note {
+  background:rgba(247,177,26,.12);
+  color:#FFF0C8;
+  border-color:rgba(247,177,26,.25);
+}
+
+#saw-commercial-pricing .pricing-btn {
+  padding:18px;
+}
+
+#saw-commercial-pricing .pricing-btn a {
+  min-height:48px;
+  width:100%;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px 14px;
+  border:1px solid transparent;
+  border-radius:8px;
+  background:linear-gradient(135deg,var(--saw-price-copper),var(--saw-price-copper-dark));
+  color:#fff!important;
+  text-decoration:none!important;
+  text-align:center;
+  font-size:13px;
+  font-weight:950;
+  transition:transform .18s ease,filter .18s ease,box-shadow .18s ease;
+}
+
+#saw-commercial-pricing .pricing-btn a:hover,
+#saw-commercial-pricing .pricing-btn a:focus-visible {
+  transform:translateY(-2px);
+  filter:brightness(1.06);
+  box-shadow:0 12px 26px rgba(122,63,24,.28);
+  outline:none;
+}
+
+#saw-commercial-pricing .pricing-block.enable .pricing-btn a {
+  background:var(--saw-price-yellow);
+  color:#1A1A1A!important;
+}
+
+#saw-commercial-pricing .saw-pricing-disclaimer {
+  margin:22px auto 0;
+  max-width:1100px;
+  color:#6B625B;
+  font-size:11px;
+  line-height:1.55;
+  text-align:center;
+}
+
+@media(max-width:1180px) {
+  #saw-commercial-pricing .saw-pricing-grid {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+
+@media(max-width:680px) {
+  #saw-commercial-pricing {
+    padding:42px 0 54px;
+  }
+  #saw-commercial-pricing .saw-pricing-wrap {
+    width:min(100% - 22px,1500px);
+  }
+  #saw-commercial-pricing .saw-pricing-grid {
+    grid-template-columns:1fr;
+  }
+  #saw-commercial-pricing .head {
+    min-height:0;
+  }
+  #saw-commercial-pricing .cost {
+    font-size:48px;
+  }
+}
+
+
+/* =========================================================
+   SAW PRICING EMPHASIS UPDATE
+========================================================= */
+#saw-commercial-pricing .currency {
+  text-align:center;
+}
+
+#saw-commercial-pricing .currency-main {
+  justify-content:center;
+  align-items:flex-start;
+  width:100%;
+}
+
+#saw-commercial-pricing .cost {
+  font-size:clamp(72px,7vw,108px);
+  line-height:.82;
+  font-weight:950;
+  letter-spacing:-.075em;
+}
+
+#saw-commercial-pricing .sign {
+  margin-top:10px;
+  font-size:28px;
+}
+
+#saw-commercial-pricing .period {
+  display:block;
+  width:100%;
+  margin:10px 0 0;
+  text-align:center;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+
+#saw-commercial-pricing .full-price,
+#saw-commercial-pricing .savings {
+  text-align:center;
+}
+
+#saw-commercial-pricing .old-price {
+  display:block;
+  margin:0 0 10px;
+  color:#8E8780;
+  font-size:24px;
+  line-height:1;
+  font-weight:900;
+  text-decoration:line-through;
+  text-decoration-thickness:3px;
+}
+
+#saw-commercial-pricing .intro-label {
+  display:block;
+  margin:8px 0 0;
+  color:var(--saw-price-yellow);
+  font-size:12px;
+  line-height:1.2;
+  font-weight:950;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+}
+
+#saw-commercial-pricing .pricing-btn button {
+  min-height:48px;
+  width:100%;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px 14px;
+  border:1px solid transparent;
+  border-radius:8px;
+  background:var(--saw-price-yellow);
+  color:#1A1A1A;
+  text-align:center;
+  font-size:13px;
+  font-weight:950;
+  cursor:pointer;
+  font-family:inherit;
+  transition:transform .18s ease,filter .18s ease,box-shadow .18s ease;
+}
+
+#saw-commercial-pricing .pricing-btn button:hover,
+#saw-commercial-pricing .pricing-btn button:focus-visible {
+  transform:translateY(-2px);
+  filter:brightness(1.05);
+  box-shadow:0 12px 26px rgba(247,177,26,.30);
+  outline:none;
+}
+
+@media(max-width:680px) {
+  #saw-commercial-pricing .cost {
+    font-size:82px;
+  }
+}
+
+
+/* SAW flexible-payment conversion notice */
+#saw-commercial-pricing .payment-flex-message{
+  display:block!important;margin:0!important;padding:11px 12px!important;border-radius:7px!important;
+  background:#F7B11A!important;color:#1A1A1A!important;text-align:center!important;line-height:1.28!important;
+  box-shadow:0 8px 18px rgba(247,177,26,.18)!important
+}
+#saw-commercial-pricing .payment-flex-message strong{
+  display:block;color:#1A1A1A!important;font-size:12px;font-weight:950;letter-spacing:.025em
+}
+#saw-commercial-pricing .payment-flex-message small{
+  display:block;margin-top:4px;color:#49370C!important;font-size:10.5px;line-height:1.35;font-weight:800
+}
+
+
+/* =========================================================
+   SAW OFFICE PRICING THEME — HOUSTON-ONE
+   Primary: #60B416
+   Secondary: #397D08
+   Contrast: #C43DFF
+========================================================= */
+
+#saw-commercial-pricing {
+  --saw-price-charcoal:#2B2B2B;
+  --saw-price-charcoal-deep:#1A1A1A;
+  --saw-price-copper:#60B416;
+  --saw-price-copper-dark:#397D08;
+  --saw-price-copper-light:#8BE739;
+  --saw-price-yellow:#C43DFF;
+  --saw-office-primary:#60B416;
+  --saw-office-secondary:#397D08;
+  --saw-office-contrast:#C43DFF;
+}
+
+/* Core card accents */
+#saw-commercial-pricing .pricing-block {
+  border-top-color:#60B416!important;
+}
+
+#saw-commercial-pricing .pricing-block.enable {
+  border-top-color:#C43DFF!important;
+}
+
+#saw-commercial-pricing .head h3 span,
+#saw-commercial-pricing .feature-heading {
+  color:#60B416!important;
+}
+
+#saw-commercial-pricing .feature-icon {
+  background:#397D08!important;
+}
+
+#saw-commercial-pricing .pricing-btn a {
+  background:linear-gradient(135deg,#60B416,#397D08)!important;
+  box-shadow:0 12px 26px rgba(96,180,22,.22)!important;
+}
+
+#saw-commercial-pricing .pricing-btn a:hover,
+#saw-commercial-pricing .pricing-btn a:focus-visible {
+  box-shadow:0 16px 34px rgba(96,180,22,.30)!important;
+}
+
+/* Contrasting conversion notices */
+#saw-commercial-pricing .payment-flex-message,
+#saw-commercial-pricing .savings span {
+  background:#C43DFF!important;
+  color:#111!important;
+  box-shadow:0 8px 18px rgba(196,61,255,.20)!important;
+}
+
+#saw-commercial-pricing .payment-flex-message strong,
+#saw-commercial-pricing .payment-flex-message small {
+  color:#111!important;
+}
+
+/* Best For Scale */
+#saw-commercial-pricing .pricing-block.enable .featured-label p {
+  background:linear-gradient(135deg,#C43DFF 0%,#D168FF 52%,#C43DFF 100%)!important;
+  color:#111!important;
+  box-shadow:
+    0 12px 28px rgba(0,0,0,.22),
+    0 0 0 1px rgba(196,61,255,.24) inset!important;
+}
+
+/* Featured / automation card details */
+#saw-commercial-pricing .pricing-block.enable .head h3 span,
+#saw-commercial-pricing .pricing-block.enable .feature-heading {
+  color:#C43DFF!important;
+}
+
+#saw-commercial-pricing .pricing-block.enable .feature-icon {
+  background:#C43DFF!important;
+  color:#111!important;
+}
+
+#saw-commercial-pricing .old-price {
+  color:#8BE739!important;
+}
+
+#saw-commercial-pricing .intro-label {
+  color:#C43DFF!important;
+}
+
+/* Business Automation CTA */
+#saw-commercial-pricing .saw-business-automation-cta {
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  min-height:64px!important;
+  width:100%!important;
+  padding:14px 22px!important;
+  border:3px solid transparent!important;
+  border-radius:14px!important;
+  color:#111!important;
+  font-size:15px!important;
+  line-height:1.15!important;
+  font-weight:950!important;
+  letter-spacing:.025em!important;
+
+  background-image:
+    linear-gradient(135deg,#C43DFF 0%,#D168FF 48%,#C43DFF 100%),
+    linear-gradient(120deg,#2F6607,#60B416,#C43DFF,#D168FF,#60B416,#2F6607)!important;
+
+  background-origin:border-box!important;
+  background-clip:padding-box,border-box!important;
+  background-size:100% 100%,240% 240%!important;
+
+  box-shadow:
+    0 15px 32px rgba(96,180,22,.26),
+    0 0 0 0 rgba(196,61,255,0)!important;
+
+  animation:
+    sawBusinessAutomationBorder 6.2s ease-in-out infinite,
+    sawBusinessAutomationIdle 3.6s ease-in-out infinite!important;
+
+  transition:
+    transform .22s cubic-bezier(.2,.8,.2,1),
+    box-shadow .22s ease,
+    filter .22s ease!important;
+}
+
+#saw-commercial-pricing .saw-business-automation-cta::before {
+  content:"";
+  position:absolute;
+  top:-40%;
+  bottom:-40%;
+  left:-40%;
+  width:28%;
+  z-index:-1;
+  transform:skewX(-20deg);
+  background:linear-gradient(
+    90deg,
+    rgba(255,255,255,0),
+    rgba(255,255,255,.72),
+    rgba(255,255,255,0)
+  );
+  opacity:0;
+}
+
+#saw-commercial-pricing .saw-business-automation-cta:hover,
+#saw-commercial-pricing .saw-business-automation-cta:focus-visible {
+  transform:translateY(-4px) scale(1.025)!important;
+  filter:brightness(1.04) saturate(1.05)!important;
+  box-shadow:
+    0 22px 42px rgba(96,180,22,.34),
+    0 0 0 7px rgba(196,61,255,.12),
+    0 0 30px rgba(196,61,255,.24)!important;
+  outline:none!important;
+}
+
+#saw-commercial-pricing .saw-business-automation-cta:hover::before,
+#saw-commercial-pricing .saw-business-automation-cta:focus-visible::before {
+  animation:sawBusinessAutomationSheen .85s ease-out 1 both;
+}
+
+#saw-commercial-pricing .saw-business-automation-cta__spark {
+  display:inline-block;
+  margin-right:8px;
+  color:#397D08!important;
+  font-size:18px;
+  line-height:1;
+  transform-origin:center;
+  animation:sawBusinessAutomationSpark 2.8s ease-in-out infinite;
+}
+
+/* Glow follows the office primary + contrast pairing */
+@keyframes sawBusinessAutomationIdle {
+  0%,100% {
+    box-shadow:
+      0 15px 32px rgba(96,180,22,.26),
+      0 0 0 0 rgba(196,61,255,0);
+  }
+  50% {
+    box-shadow:
+      0 17px 36px rgba(96,180,22,.30),
+      0 0 0 4px rgba(196,61,255,.10);
+  }
+}
+
+/* Capability note accent */
+#saw-commercial-pricing .capability-note {
+  background:rgba(196,61,255,.10)!important;
+  border-top-color:rgba(196,61,255,.32)!important;
+  color:#397D08!important;
+}
+
+#saw-commercial-pricing .pricing-block:hover .capability-note,
+#saw-commercial-pricing .pricing-block.enable .capability-note {
+  background:rgba(196,61,255,.12)!important;
+  color:#fff!important;
+  border-color:rgba(196,61,255,.30)!important;
+}

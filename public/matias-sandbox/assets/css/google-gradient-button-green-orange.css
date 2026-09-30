@@ -1,0 +1,499 @@
+/* ================================
+   Core Button Variables / Base
+   ================================ */
+
+:root {
+  --saw-font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Utility wrapper to center buttons in rows if desired */
+.ban-btn,
+.btn-row-center {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* ==========================================
+   1) Base SAW Button (small/medium CTA)
+   ========================================== */
+
+.saw-button {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 90px;
+  white-space: nowrap;
+  backdrop-filter: blur(44px) brightness(0.93);
+  background-image: linear-gradient(
+    142.13deg,
+    rgba(254, 248, 255, 0.35) 1.8%,
+    rgba(254, 248, 255, 0.2) 99.75%
+  );
+  border: 3px solid rgba(62, 139, 0, 0.3);
+  transition: transform 0.3s ease;
+  font-family: var(--saw-font-family);
+  z-index: 1;
+}
+
+.saw-button:hover {
+  transform: perspective(800px) rotateX(3deg) rotateY(-3deg);
+}
+
+/* Shine wipe sweep (diagonal) */
+.saw-button::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  transform: translateX(-100%) rotate(25deg);
+  pointer-events: none;
+  transition: transform 0.6s ease;
+  z-index: 1;
+}
+
+.saw-button:hover::before {
+  transform: translateX(100%) rotate(25deg);
+}
+
+/* Neon flicker glow */
+.saw-button::after {
+  content: "";
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%;
+  border-radius: 90px;
+  background: radial-gradient(circle, rgba(62, 139, 0, 0.5) 0%, rgba(62, 139, 0, 0) 70%);
+  opacity: 0;
+  box-shadow:
+    0 0 18px #46c418,
+    0 0 28px #46c418,
+    0 0 40px #46c418;
+  transition: opacity 0.25s ease;
+  z-index: 0;
+}
+
+.saw-button:hover::after {
+  opacity: 1;
+}
+
+.saw-button > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* ==============================================
+   2) SAW Button – AI Style Gradient Border (small)
+   ============================================== */
+/* ================================
+   Core Button Variables / Base
+   ================================ */
+
+:root {
+  --saw-font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Utility wrapper to center buttons in rows if desired */
+.ban-btn,
+.btn-row-center {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* ==========================================
+   1) Base SAW Button (small/medium CTA)
+   ========================================== */
+
+.saw-button {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 90px;
+  white-space: nowrap;
+  backdrop-filter: blur(44px) brightness(0.93);
+  background-image: linear-gradient(
+    142.13deg,
+    rgba(254, 248, 255, 0.35) 1.8%,
+    rgba(254, 248, 255, 0.2) 99.75%
+  );
+  border: 3px solid rgba(62, 139, 0, 0.3);
+  transition: transform 0.3s ease;
+  font-family: var(--saw-font-family);
+  z-index: 1;
+}
+
+.saw-button:hover {
+  transform: perspective(800px) rotateX(3deg) rotateY(-3deg);
+}
+
+/* Shine wipe sweep (diagonal) */
+.saw-button::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  transform: translateX(-100%) rotate(25deg);
+  pointer-events: none;
+  transition: transform 0.6s ease;
+  z-index: 1;
+}
+
+.saw-button:hover::before {
+  transform: translateX(100%) rotate(25deg);
+}
+
+/* Neon flicker glow */
+.saw-button::after {
+  content: "";
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%;
+  border-radius: 90px;
+  background: radial-gradient(circle, rgba(62, 139, 0, 0.5) 0%, rgba(62, 139, 0, 0) 70%);
+  opacity: 0;
+  box-shadow:
+    0 0 18px #46c418,
+    0 0 28px #46c418,
+    0 0 40px #46c418;
+  transition: opacity 0.25s ease;
+  z-index: 0;
+}
+
+.saw-button:hover::after {
+  opacity: 1;
+}
+
+.saw-button > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* ==============================================
+   2) SAW Button – AI Style Gradient Border (small)
+   ============================================== */
+
+.saw-button-ai {
+  border: 3px solid transparent; /* border drawn via backgrounds */
+  background-image:
+    /* inner glassy highlight (same as base) */
+    linear-gradient(
+      142.13deg,
+      rgba(254, 248, 255, 0.35) 1.8%,
+      rgba(254, 248, 255, 0.2) 99.75%
+    ),
+    /* outer animated green→orange gradient border */
+    linear-gradient(
+    120deg,
+    #09c509,  /* neon green */,
+    #2dff6a,  /* bright green */,
+    #00b43a,  /* rich green */,
+    #006b2a,  /* dark green */,
+    #ff9708,  /* orange */,
+    #ff6a00,  /* deep orange */,
+    #ff2d00,  /* orange-red */
+  );
+  background-origin: padding-box, border-box;
+  background-clip: padding-box, border-box;
+  background-size: 100% 100%, 200% 200%;
+  animation: saw-ai-border-shift 6s ease infinite;
+  animation-play-state: paused; /* start via JS class toggle */
+}
+
+@keyframes saw-ai-border-shift {
+  0%   { background-position: 0% 0%,   0% 50%; }
+  50%  { background-position: 0% 0%, 100% 50%; }
+  100% { background-position: 0% 0%,  0% 50%; }
+}
+
+/* ==================================================
+   3) Large AI-Mode Button (Dark 3D Inner Background)
+   ================================================== */
+
+.ai-mode-btn-wrapper {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.ai-mode-btn {
+  position: relative;
+  display: inline-block;
+  padding: 3px; 
+  border-radius: 999px;
+  background: linear-gradient(
+    120deg,
+    #09c509,  /* neon green */,
+    #2dff6a,  /* bright green */,
+    #00b43a,  /* rich green */,
+    #006b2a,  /* dark green */,
+    #ff9708,  /* orange */,
+    #ff6a00,  /* deep orange */,
+    #ff2d00,  /* orange-red */
+  );
+  background-size: 200% 200%;
+  cursor: pointer;
+  text-decoration: none;
+  animation: ai-border-shift 6s ease infinite;
+  animation-play-state: paused; /* start via JS class toggle */
+}
+
+.ai-mode-btn-inner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+
+  /* Larger CTA height */
+  padding: 1.6rem 2.2rem;
+
+  border-radius: inherit;
+
+  /* Dark 3D inner background */
+  background: linear-gradient(
+    to bottom,
+    #454545 0%,
+    #232323 45%,
+    #1c1d20 100%
+  );
+
+  color: #f5f5ff;
+  font-family: var(--saw-font-family);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+
+  box-shadow:
+    inset 0 1px 3px rgba(255, 255, 255, 0.08),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.45);
+}
+
+.ai-mode-btn-icon {
+  font-size: 1.3rem;
+}
+
+.ai-mode-btn:hover .ai-mode-btn-inner {
+  background: linear-gradient(
+    to bottom,
+    #505050 0%,
+    #2b2b2b 45%,
+    #1e1f22 100%
+  );
+  transform: translateY(-2px);
+  box-shadow: 
+    inset 0 1px 4px rgba(255, 255, 255, 0.10),
+    inset 0 -2px 5px rgba(0, 0, 0, 0.5),
+    0 0 26px rgba(124, 101, 255, 0.55);
+}
+
+.ai-mode-btn:active .ai-mode-btn-inner {
+  transform: translateY(0);
+  box-shadow: 
+    inset 0 0px 2px rgba(255, 255, 255, 0.05),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.45);
+}
+
+@keyframes ai-border-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ===================================================
+   4) Large AI-Mode Button – Light Version (White/Gray)
+   =================================================== */
+
+/* Add this class in HTML: class="ai-mode-btn ai-mode-btn--light" */
+.ai-mode-btn.ai-mode-btn--light .ai-mode-btn-inner {
+  background: linear-gradient(
+    to bottom,
+    #ffffff 0%,
+    #f5f5f5 40%,
+    #e6e6e6 100%
+  );
+  color: #1a1a1a;
+  box-shadow:
+    inset 0 1px 3px rgba(255, 255, 255, 0.6),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.ai-mode-btn.ai-mode-btn--light:hover .ai-mode-btn-inner {
+  background: linear-gradient(
+    to bottom,
+    #ffffff 0%,
+    #f0f0f0 40%,
+    #dddddd 100%
+  );
+  box-shadow: 
+    inset 0 1px 4px rgba(255, 255, 255, 0.75),
+    inset 0 -2px 5px rgba(0, 0, 0, 0.2),
+    0 0 26px rgba(160, 180, 255, 0.55);
+}
+
+/* ======================================
+   Responsiveness for Buttons
+   ====================================== */
+
+/* Large desktops (default) – styles above */
+
+/* Tablets & small desktops (≤ 992px) */
+
+/* ==================================================
+   Scroll-trigger support (Google AI-Mode style)
+   - Animations are paused by default for .saw-button-ai and .ai-mode-btn
+   - Add the class "is-animating" to start (we include an optional JS snippet below)
+   ================================================== */
+
+.saw-button-ai.is-animating,
+.ai-mode-btn.is-animating {
+  animation-play-state: running;
+}
+
+/* If you want the border to keep animating once triggered, do NOT remove the class. */
+
+
+@media (max-width: 992px) {
+  .saw-button {
+    padding: 12px 24px;
+    font-size: 13px;
+  }
+
+  .ai-mode-btn-inner {
+    padding: 1.4rem 1.9rem;
+    font-size: 1rem;
+  }
+}
+
+/* Tablets & large phones (≤ 768px) */
+@media (max-width: 768px) {
+  .saw-button,
+  .ai-mode-btn {
+    max-width: 100%;
+  }
+
+  .saw-button {
+    padding: 12px 20px;
+    font-size: 13px;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .ai-mode-btn-inner {
+    padding: 1.2rem 1.6rem;
+    font-size: 0.96rem;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .ban-btn,
+  .btn-row-center {
+    gap: 16px;
+  }
+}
+
+/* Small phones (≤ 576px) */
+@media (max-width: 576px) {
+  .saw-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .ai-mode-btn-wrapper {
+    margin: 1.5rem 0;
+  }
+
+  .ai-mode-btn {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .ai-mode-btn-inner {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ==================================================
+   OPTIONAL: Scroll-trigger JS (copy into your page)
+   Starts the border animation when the button is within ~220px of entering view.
+   It then keeps animating (class stays).
+   --------------------------------------------------
+
+<script>
+(function () {
+  function startWhenNearViewport(el) {
+    if (!el) return;
+
+    // Already started
+    if (el.classList.contains("is-animating")) return;
+
+    // Preferred: IntersectionObserver
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            el.classList.add("is-animating");
+            io.disconnect(); // keep going forever
+          }
+        });
+      }, { root: null, rootMargin: "220px 0px", threshold: 0.01 });
+
+      io.observe(el);
+      return;
+    }
+
+    // Fallback: scroll listener
+    const onScroll = () => {
+      const r = el.getBoundingClientRect();
+      if (r.top <= (window.innerHeight + 220)) {
+        el.classList.add("is-animating");
+        window.removeEventListener("scroll", onScroll, { passive: true });
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+
+  // Use whichever selector matches your button
+  const targets = document.querySelectorAll(".ai-mode-btn, .saw-button-ai");
+  targets.forEach(startWhenNearViewport);
+})();
+</script>
+
+   ================================================== */

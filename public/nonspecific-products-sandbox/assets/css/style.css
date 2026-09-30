@@ -1,0 +1,7 @@
+/**
+ * Legacy Shopify theme rules are intentionally disabled because they target
+ * global header, navigation, typography, layout, modal, and component classes.
+ * The current widget's scoped tooltip and icon styles live in styles-*.css.
+ *
+ * Original preserved as: style.legacy-backup.css
+ */

@@ -1,0 +1,57 @@
+/*Custom Styles*/
+@media only screen and (max-width: 1064px) {
+    .menu-panel-root li{
+        padding: 5px;
+    }
+    .menu-panel-root li a {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .half-hero-wrap h4 {
+        font-size: 16px !important;
+        line-height: 22px;
+    }
+    .btn {
+        font-size: 14px;
+    }
+    .page-scroll-nav li a {
+        font-size: 12px;
+    }
+    .section-title p, .single-page-title p {
+        font-size: 14px;
+    }
+    .main-about-text-area p{
+        font-size: 16px;
+        line-height: 26px;
+    }
+    .inline-facts-wrap h6 {
+        font-size: 14px;
+    }
+    .process-details h6{
+        font-size: 16px;
+    }
+    .process-details p{
+        font-size: 14px;
+    }
+    .piechart-holder h4{
+        font-size: 14px;
+    }
+    .custom-skillbar-title span {
+        font-size: 14px;
+    }
+    .main-about-text-area ul li, .resum-content ul li {
+        font-size: 14px !important;
+    }
+    .testimonilas-text p {
+        font-size: 14px;
+    }
+    .video-promo-text p {
+        font-size: 14px;
+    }
+    .resum-content p {
+        font-size: 14px;
+    }
+    .footer-box-item p{
+        font-size: 14px;
+    }
+}

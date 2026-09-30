@@ -1,0 +1,229 @@
+.saw-sticky-cta {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 99990;
+    padding: 10px max(12px, env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+    transform: translateY(calc(100% + 16px));
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    background: linear-gradient(180deg, rgba(8, 11, 18, 0.7), rgba(8, 11, 18, 0.82));
+    box-shadow: 0 -16px 38px rgba(8, 11, 18, 0.24);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    -webkit-backdrop-filter: blur(18px) saturate(135%);
+    backdrop-filter: blur(18px) saturate(135%);
+    transition: transform 0.32s ease, opacity 0.25s ease, visibility 0.32s ease;
+}
+
+.saw-sticky-cta.is-visible {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.saw-sticky-cta__inner {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 9px;
+    width: min(1180px, 100%);
+    margin: 0 auto;
+}
+
+.saw-sticky-cta__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 58px;
+    padding: 10px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.09);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    color: #fff;
+    font-family: 'Poppins', Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    text-wrap: balance;
+    transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.saw-sticky-cta__button:hover,
+.saw-sticky-cta__button:focus-visible {
+    transform: translateY(-3px);
+    border-color: rgba(255, 255, 255, 0.48);
+    background: rgba(255, 255, 255, 0.16);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.24);
+    color: #fff;
+    text-decoration: none;
+    outline: none;
+}
+
+.saw-sticky-cta__button--business {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: #ff6600;
+    box-shadow: 0 8px 22px rgba(255, 102, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.24);
+    color: #fff;
+}
+
+.saw-sticky-cta__button--business:hover,
+.saw-sticky-cta__button--business:focus-visible {
+    background: #ff6600;
+    box-shadow: 0 12px 30px rgba(255, 102, 0, 0.5), 0 0 0 3px rgba(255, 102, 0, 0.16);
+    color: #fff;
+    filter: brightness(1.07);
+}
+
+.saw-sticky-cta__button--shopify {
+    border-color: rgba(255, 255, 255, 0.46);
+    background: #5b893c;
+    box-shadow: 0 8px 22px rgba(91, 137, 60, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+    color: #fff;
+}
+
+.saw-sticky-cta__button--shopify:hover,
+.saw-sticky-cta__button--shopify:focus-visible {
+    background: #5b893c;
+    box-shadow: 0 12px 30px rgba(91, 137, 60, 0.54), 0 0 0 3px rgba(91, 137, 60, 0.2);
+    color: #fff;
+    filter: brightness(1.09);
+}
+
+.saw-sticky-cta__button--wordpress {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: #006fa4;
+    box-shadow: 0 8px 22px rgba(0, 111, 164, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+    color: #fff;
+}
+
+.saw-sticky-cta__button--wordpress:hover,
+.saw-sticky-cta__button--wordpress:focus-visible {
+    background: #006fa4;
+    box-shadow: 0 12px 30px rgba(0, 111, 164, 0.58), 0 0 0 3px rgba(0, 111, 164, 0.2);
+    color: #fff;
+    filter: brightness(1.1);
+}
+
+.saw-sticky-cta__button--redesign {
+    border-color: rgba(255, 255, 255, 0.58);
+    background: #efaf00;
+    box-shadow: 0 8px 22px rgba(239, 175, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.32);
+    color: #17130a;
+}
+
+.saw-sticky-cta__button--redesign:hover,
+.saw-sticky-cta__button--redesign:focus-visible {
+    background: #efaf00;
+    box-shadow: 0 12px 30px rgba(239, 175, 0, 0.56), 0 0 0 3px rgba(239, 175, 0, 0.2);
+    color: #17130a;
+    filter: brightness(1.08);
+}
+
+.saw-sticky-cta__button--call {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border-color: transparent;
+    background: linear-gradient(135deg, #12ad4a 0%, #078337 100%);
+    box-shadow: 0 7px 20px rgba(7, 131, 55, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+    color: #fff;
+    animation: saw-call-attention 2.8s ease-in-out infinite;
+}
+
+.saw-sticky-cta__button--call::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: -30%;
+    bottom: -30%;
+    left: -55%;
+    width: 38%;
+    transform: translateX(-180%) skewX(-18deg);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.48), transparent);
+    pointer-events: none;
+    transition: transform 0.58s ease;
+}
+
+.saw-sticky-cta__button--call:hover,
+.saw-sticky-cta__button--call:focus-visible {
+    animation: none;
+    transform: translateY(-4px) scale(1.035);
+    border-color: rgba(188, 255, 211, 0.8);
+    background: linear-gradient(135deg, #16bd53 0%, #07913d 100%);
+    box-shadow: 0 12px 30px rgba(7, 145, 61, 0.46), 0 0 0 3px rgba(51, 214, 111, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+.saw-sticky-cta__button--call:hover::before,
+.saw-sticky-cta__button--call:focus-visible::before {
+    transform: translateX(520%) skewX(-18deg);
+}
+
+@keyframes saw-call-attention {
+    0%, 64%, 100% {
+        transform: translateY(0) scale(1);
+        box-shadow: 0 7px 20px rgba(7, 131, 55, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+    }
+
+    74% {
+        transform: translateY(-2px) scale(1.018);
+        box-shadow: 0 10px 28px rgba(7, 170, 67, 0.48), 0 0 0 0 rgba(54, 222, 116, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.26);
+    }
+
+    86% {
+        transform: translateY(0) scale(1);
+        box-shadow: 0 8px 22px rgba(7, 145, 61, 0.34), 0 0 0 7px rgba(54, 222, 116, 0), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+    }
+}
+
+body.saw-sticky-cta-visible .back-to-top {
+    bottom: 86px;
+}
+
+@media (max-width: 767px) {
+    .saw-sticky-cta {
+        padding: 7px max(8px, env(safe-area-inset-right)) calc(7px + env(safe-area-inset-bottom)) max(8px, env(safe-area-inset-left));
+    }
+
+    .saw-sticky-cta__inner {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 6px;
+    }
+
+    .saw-sticky-cta__button {
+        min-height: 46px;
+        padding: 7px 9px;
+        border-radius: 11px;
+        font-size: 12px;
+    }
+
+    body.saw-sticky-cta-visible .back-to-top {
+        bottom: 116px;
+    }
+
+    body.saw-sticky-cta-visible .prt_floting_customsett {
+        bottom: 121px;
+    }
+}
+
+@media (max-width: 390px) {
+    .saw-sticky-cta__button {
+        padding-inline: 6px;
+        font-size: 11px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .saw-sticky-cta,
+    .saw-sticky-cta__button {
+        transition: none;
+    }
+
+    .saw-sticky-cta__button--call {
+        animation: none;
+    }
+}

@@ -1,0 +1,18 @@
+{
+  "project": "standardamericanweb-houston",
+  "source": "public_html (excluding addon roots)",
+  "public_files": 2867,
+  "public_bytes": 375574041,
+  "large_files": 5,
+  "large_bytes": 239523493,
+  "server_source_files": 3,
+  "server_source_bytes": 7625,
+  "large_paths": [
+    "matias-sandbox/assets/img/gifs/car-detail-02-gif.gif",
+    "matias-sandbox/assets/img/gifs/real-estate.gif",
+    "nonspecific-products-sandbox/assets/images/shopify/shopify-gif.gif",
+    "nonspecific-products-sandbox/assets/images/shopify/uzno98kckrjcr7qy3no4.gif",
+    "nonspecific-products-sandbox/assets/images/wordpress/wordpress-gif.gif"
+  ],
+  "rewritten_files": 1
+}

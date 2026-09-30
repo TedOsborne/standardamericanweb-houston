@@ -1,0 +1,70 @@
+.saw-trust-row {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin: 0 0 22px;
+}
+
+.saw-trust-widget {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    color: #1a1a1a;
+    font-size: 14px;
+    line-height: 1.25;
+}
+
+.saw-trust-faces {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.saw-trust-face {
+    width: 40px;
+    height: 40px;
+    margin-left: -10px;
+    border: 2px solid #ff6600;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(26, 26, 26, 0.18);
+    object-fit: cover;
+}
+
+.saw-trust-copy {
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.saw-trust-rating {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: #ff6600;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+    .saw-trust-row,
+    .saw-trust-widget {
+        justify-content: center;
+    }
+
+    .saw-trust-widget {
+        flex-wrap: wrap;
+        gap: 9px;
+        text-align: center;
+    }
+
+    .saw-trust-copy {
+        white-space: normal;
+    }
+}

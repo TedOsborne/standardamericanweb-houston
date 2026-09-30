@@ -1,0 +1,8 @@
+/**
+ * Legacy green Shopify theme rules are intentionally disabled because they
+ * target global header, navigation, typography, layout, modal, and component
+ * classes. The current widget's scoped green palette lives in
+ * styles-shopify-green.css.
+ *
+ * Original preserved as: style-green.legacy-backup.css
+ */

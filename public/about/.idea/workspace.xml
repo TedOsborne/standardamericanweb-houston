@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="abfebb9d-8aac-4333-acaf-3efd033ea5d2" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="ProjectId" id="1XTinspwyKvme59ITItylslassf" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="abfebb9d-8aac-4333-acaf-3efd033ea5d2" name="Default Changelist" comment="" />
+      <created>1581076654969</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1581076654969</updated>
+      <workItem from="1581076657151" duration="32000" />
+      <workItem from="1581142055378" duration="60000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="462" y="107" key="FileChooserDialogImpl" timestamp="1581142111990">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="462" y="107" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1581142111990" />
+    <state x="369" y="80" width="627" height="568" key="find.popup" timestamp="1581076687409">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="369" y="80" width="627" height="568" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1581076687409" />
+  </component>
+</project>

@@ -1,0 +1,281 @@
+/* =========================================================================================
+   SAW • BAIRESDEV-STYLE SECTIONS (CLONED UX)
+   File: saw-bairesdev-saas-sections.css
+   Purpose: Shared styles for the 3 imported components:
+            (1) HOW WE WORK
+            (2) SAAS DEVELOPMENT CAPABILITIES (CLICK-TO-REVEAL)
+            (3) TALK TO AN EXPERT CTA
+   ========================================================================================= */
+
+
+/* =========================================================================================
+   (2) SAAS DEVELOPMENT CAPABILITIES — CLICK-TO-REVEAL (PDF-PRECISE)
+   Key behaviors to match BairesDev:
+   - White background, thin orange borders
+   - Tool titles NOT bold until selected
+   - Right panel "floats" and repositions vertically to stay inside section
+   - Connector line runs from active tool to active panel
+   - Divider line between description + tech list
+   - Slight hover shadow on tool + active panel
+   - Softer orange circle + GREEN check inside
+========================================================================================= */
+
+.saw-saas-cap{ background:#fff; position:relative; }
+.saw-saas-cap__inner{ position:relative; }
+
+.saw-saas-cap__head{ text-align:center; margin-bottom: 28px; }
+.saw-saas-cap__eyebrow{
+  display:inline-block;
+  font-weight:700;
+  letter-spacing:.10em;
+  text-transform:uppercase;
+  font-size: 12px;
+  color:#777;
+  margin-bottom: 10px;
+}
+.saw-saas-cap__title{
+  font-size: clamp(30px, 3vw, 44px);
+  line-height: 1.15;
+  font-weight: 600;
+  color:#111;
+  margin:0;
+}
+
+.saw-saas-cap__grid{
+  position:relative;
+  display:grid;
+  grid-template-columns: minmax(280px, 360px) 1fr;
+  gap: 28px;
+  align-items:start;
+}
+
+/* ---------- LEFT: TOOL LIST ---------- */
+.saw-saas-tools{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  gap: 14px;
+}
+
+.saw-saas-tool{
+  position:relative;
+  background:#fff;
+  border:1px solid rgba(246,97,53,.55);          /* thin orange */
+  border-radius: 10px;                           /* squarer */
+  padding: 18px 18px 18px 54px;
+  cursor:pointer;
+  transition: box-shadow .18s ease, border-color .18s ease, transform .18s ease;
+  user-select:none;
+}
+
+.saw-saas-tool::before{
+  content:"";
+  position:absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background: rgba(246,97,53,.18);               /* softer orange than active border */
+  border: 1px solid rgba(246,97,53,.45);
+}
+
+.saw-saas-tool::after{
+  content:"✓";
+  position:absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-52%);
+  width: 26px;
+  height: 26px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size: 16px;
+  font-weight: 900;
+  color:#15b24a;                                  /* GREEN check */
+}
+
+.saw-saas-tool__title{
+  margin:0;
+  font-size: 18px;
+  line-height: 1.25;
+  color:#151515;
+  font-weight: 500;                               /* NOT bold until active */
+}
+
+.saw-saas-tool:hover{
+  box-shadow: 0 12px 26px rgba(0,0,0,.10);
+  transform: translateY(-1px);
+}
+
+.saw-saas-tool.is-active{
+  border-color: rgba(246,97,53,.95);              /* stronger orange on active */
+  box-shadow: 0 14px 30px rgba(0,0,0,.12);
+}
+
+.saw-saas-tool.is-active .saw-saas-tool__title{
+  font-weight: 800;                               /* bold only when selected */
+}
+
+/* ---------- RIGHT: FLOATING PANEL STAGE ---------- */
+.saw-saas-right{
+  position:relative;
+  min-width: 0;
+}
+
+/* stage height is set by JS to match left-column height */
+.saw-saas-stage{
+  position:relative;
+  width:100%;
+}
+
+/* panels are absolutely stacked; JS applies translateY to active */
+.saw-saas-panel{
+  position:absolute;
+  inset: 0 auto auto 0;
+  width:100%;
+  max-width: 100%;
+  opacity:0;
+  pointer-events:none;
+  transform: translateY(0);
+  transition: opacity .18s ease, transform .22s ease;
+  background:#fff;
+  border:1px solid rgba(246,97,53,.55);
+  border-radius: 10px;                            /* squarer */
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+}
+
+.saw-saas-panel.is-active{
+  opacity:1;
+  pointer-events:auto;
+  box-shadow: 0 14px 30px rgba(0,0,0,.12);        /* slight active shadow */
+}
+
+.saw-saas-panel__body{
+  padding: 22px 22px 0 22px;
+}
+
+.saw-saas-panel__heading{
+  margin:0 0 10px 0;
+  font-size: 22px;
+  line-height: 1.2;
+  font-weight: 800;
+  color:#111;
+}
+
+.saw-saas-panel__desc{
+  margin:0 0 16px 0;
+  font-size: 16px;
+  line-height: 1.55;
+  color:#404040;
+}
+
+/* divider line BETWEEN tool description and tech */
+.saw-saas-panel__divider{
+  height:1px;
+  background: rgba(246,97,53,.55);
+  margin: 0 -22px 0 -22px;                         /* touches card edges like PDF */
+}
+
+.saw-saas-tech{
+  padding: 16px 22px 22px 22px;
+  display:flex;
+  flex-wrap:wrap;
+  gap: 10px;
+}
+
+.saw-saas-chip{
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 9px;
+  border: 1px solid rgba(246,97,53,.35);
+  background: #fff;
+  font-size: 14px;
+  font-weight: 650;
+  color:#1a1a1a;
+  line-height: 1;
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+}
+
+.saw-saas-chip img{
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  display:block;
+}
+
+/* ---------- CONNECTOR LINE (tool -> panel) ---------- */
+.saw-saas-connector{
+  position:absolute;
+  height:1px;                                     /* thin */
+  background: rgba(246,97,53,.75);
+  opacity:0;
+  transform-origin:left center;
+  pointer-events:none;
+  z-index: 5;
+}
+.saw-saas-connector.is-on{ opacity:1; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 992px){
+  .saw-saas-cap__grid{
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .saw-saas-panel{
+    position:relative;
+    inset:auto;
+    opacity:1;                                     /* show active panel normally */
+    pointer-events:auto;
+    margin-top: 10px;
+  }
+  .saw-saas-stage{ height:auto !important; }       /* JS height not needed */
+  .saw-saas-connector{ display:none; }
+}
+
+@media (max-width: 576px){
+  .saw-saas-tool{ padding: 16px 16px 16px 52px; }
+  .saw-saas-tool__title{ font-size: 17px; }
+  .saw-saas-panel__heading{ font-size: 20px; }
+}
+/* ===== SAW HWW Avatar Images (matches social-proof overlap) ===== */
+.saw-hww__avatars{
+  display:flex;
+  align-items:center;
+  margin-left: 6px;
+}
+
+.saw-hww__avimg{
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  object-fit: cover;
+  background: rgba(255,255,255,.92);
+  border: 2px solid rgba(255,255,255,.55);
+  box-shadow: 0 10px 20px rgba(0,0,0,.18);
+  margin-left: -10px; /* overlap */
+  display: block;
+}
+
+.saw-hww__avimg:first-child{
+  margin-left: 0;
+}
+
+
+/* =========================================================================================
+   (1) HOW WE WORK — (leave your existing implementation here)
+   ========================================================================================= */
+/* If you already have a How We Work block in this same file, keep it above or below.
+   This file is intentionally namespaced; add your other section rules here if desired. */
+
+
+/* =========================================================================================
+   (3) TALK TO AN EXPERT CTA — (leave your existing implementation here)
+   ========================================================================================= */
+/* Same note as above. */

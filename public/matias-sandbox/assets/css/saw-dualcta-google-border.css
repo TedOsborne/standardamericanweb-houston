@@ -1,0 +1,200 @@
+/* ============================================================
+   SAW Dual CTA — Google AI-Mode Animated GRADIENT BORDER (Green→Yellow→Orange→tiny Red)
+   File: saw-dualcta-google-border.css
+   Drop-in replacement for your previous file of the same name.
+   ============================================================ */
+
+/* Optional: respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .saw-dualcta__btn{ animation: none !important; }
+}
+
+/* ===== Layout (same as your working dual button) ===== */
+.saw-dualcta{
+  display:flex;
+  justify-content:center;
+  align-items:stretch;
+  gap:0;
+  max-width: 860px;
+  width: 100%;
+  margin: 22px auto;
+  padding: 0 10px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* ===== Buttons ===== */
+.saw-dualcta__btn{
+  flex: 1 1 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  /* Size */
+  min-height: 78px;
+  padding: 22px 34px;
+
+  /* Typography */
+  text-decoration:none;
+  font-size: 20px;
+  font-weight: 900;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  letter-spacing: .01em;
+  line-height: 1.1;
+  text-align: center;
+
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform .15s ease, filter .15s ease, opacity .15s ease;
+
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+
+  /* ===== THE IMPORTANT PART =====
+     True animated *border* using the "two background layers" trick:
+     - Layer 1: the solid fill (clipped to padding-box)
+     - Layer 2: the animated gradient (clipped to border-box)
+     This prevents the gradient from appearing inside the button.
+  */
+  --borderW: 3px;
+  border: var(--borderW) solid transparent;
+
+  /* Fill is set per-side via --fill */
+  --fill: #111;
+
+  background-image:
+    linear-gradient(var(--fill), var(--fill)),
+    linear-gradient(
+      120deg,
+      #09c509,
+      #2dff6a,
+      #00b43a,
+      #006b2a,
+      #c9f31d,
+      #ffd84a,
+      #ffb200,
+      #ff9708,
+      #ff6a00,
+      #ff2d00,   /* tiny "hot" pop */
+      #ff9708,   /* immediately back to orange so it never screams "STOP" */
+      #09c509
+    );
+
+  background-origin: padding-box, border-box;
+  background-clip: padding-box, border-box;
+
+  /* 1st layer stays fixed; 2nd layer animates */
+  background-size: 100% 100%, 240% 240%;
+  background-position: 0% 0%, 0% 50%;
+
+  background-repeat: no-repeat;
+  background-color: transparent;
+
+  animation: saw-dualcta-border-shift 7s ease-in-out infinite;
+
+  /* Subtle depth */
+  box-shadow: 0 16px 40px rgba(0,0,0,.18);
+}
+
+/* Connected pill rounding */
+.saw-dualcta__btn--left{
+  border-radius: 999px 0 0 999px;
+  --fill: #c9f31d;
+  color: #1A1A1A;
+}
+
+.saw-dualcta__btn--right{
+  border-radius: 0 999px 999px 0;
+  --fill: #3B3B3B;
+  color: #c9f31d;
+}
+
+/* Seam line between buttons (keeps the “single pill” look) */
+.saw-dualcta__btn--left::after{
+  content:"";
+  position:absolute;
+  top: 12px;
+  bottom: 12px;
+  right: calc(var(--borderW) * -1); /* aligns with border thickness */
+  width: 2px;
+  background: rgba(255,255,255,.18);
+  z-index: 2;
+}
+
+/* Hover / Active */
+.saw-dualcta__btn:hover{
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+.saw-dualcta__btn:active{
+  transform: translateY(0px);
+  opacity: .96;
+}
+
+/* OR badge */
+.saw-dualcta__or{
+  position:absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight: 900;
+  font-size: 14px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+
+  background: #FFFFFFd9;
+  color: #111;
+
+  border: 2px solid rgba(0,0,0,.08);
+  box-shadow: 0 14px 34px rgba(0,0,0,.28);
+
+  z-index: 4;
+  pointer-events:none;
+}
+
+/* Border animation (matches the technique in your reference CSS) */
+@keyframes saw-dualcta-border-shift{
+  0%   { background-position: 0% 0%,   0% 50%; }
+  50%  { background-position: 0% 0%, 100% 50%; }
+  100% { background-position: 0% 0%,  0% 50%; }
+}
+
+/* Mobile: stack (same behavior as before) */
+@media (max-width: 768px){
+  .saw-dualcta{
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .saw-dualcta__btn{
+    width: min(520px, 100%);
+    border-radius: 999px !important;
+    min-height: 72px;
+    padding: 20px 18px;
+  }
+
+  .saw-dualcta__or{
+    position: static;
+    transform: none;
+    width: auto;
+    height: auto;
+    border-radius: 999px;
+    padding: 10px 16px;
+    margin: -2px 0;
+  }
+
+  .saw-dualcta__btn--left::after{ display:none; }
+}

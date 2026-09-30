@@ -1,0 +1,84 @@
+/*!
+  LivePreview Responsive Digital Product Demo Bar
+  @name style.css
+  @description live preview is used to manage & switch between your digital products like wordpress themes, html templates and etc...
+  @version 1.2.1
+  @author Max Lavrentiev
+  @site http://www.avirtum.com
+*/
+//===========================================
+// Colors
+//===========================================
+@color-black:#000000;
+@color-white:#FFFFFF;
+@color-dark:#1a1a1a;
+@color-gray:#e5e5e5;
+@color-dark-gray:#282828;
+@color-light-gray:#f4f4f4;
+@color-coral:#ff7458;
+@color-green:#6bc452;
+@color-lilac:#404462;
+@color-blue:#16BBEB;
+@color-lime:#90c940;
+
+//===========================================
+// General
+//===========================================
+html, body {
+	margin:0;
+	padding:0;
+	border:0;
+}
+body {
+	overflow:hidden;
+	background-color:lighten(@color-dark,15%);
+}
+.page {
+	display:none;
+}
+//===========================================
+// Loader
+//===========================================
+.loader-wrap {
+	position:absolute;
+	display:block;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	z-index:9999;
+	
+	.loader {
+		position:absolute;
+		display:block;
+		top:50%;
+		left:50%;
+		width:30px;
+		height:30px;
+		margin:-15px 0 0 -15px;
+		border:4px solid @color-black;
+		animation:loader 2s infinite ease;
+		
+		.loader-inner {
+			position:absolute;
+			display:block;
+			width:100%;
+			background-color:lighten(@color-black,0%);
+			animation:loader-inner 2s infinite ease-in;
+		}
+	}
+}
+@keyframes loader {
+	0%   { transform: rotate(0deg);   }
+	25%  { transform: rotate(180deg); }
+	50%  { transform: rotate(180deg); }
+	75%  { transform: rotate(360deg); }
+	100% { transform: rotate(360deg); }
+}
+@keyframes loader-inner {
+	0%   { height: 0%;   }
+	25%  { height: 0%;   }
+	50%  { height: 100%; }
+	75%  { height: 100%; }
+	100% { height: 0%;   }
+}

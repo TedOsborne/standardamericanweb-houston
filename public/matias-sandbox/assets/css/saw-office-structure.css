@@ -1,0 +1,1024 @@
+/* =========================================================
+   SAW OFFICE STRUCTURE CSS
+   Source: index-CSS-Removed.html
+   Purpose: layout, spacing, sizing, positioning, responsiveness,
+   behavior, and structural support only.
+
+   Load order recommendation:
+   1. bootstrap.min.css
+   2. aos.css
+   3. main.css
+   4. google-gradient-button.css
+   5. google-gradient-button-green-orange.css
+   6. saw-office-landing.css
+   7. saw-office-green-theme.css
+   8. saw-office-structure.css
+   9. saw-office-theme.css
+========================================================= */
+
+/* =========================
+   GLOBAL STRUCTURE
+========================= */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+html,
+body {
+  overflow-x: clip;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img,
+video,
+svg {
+  max-width: 100%;
+}
+
+/* =========================
+   BANNER VIDEO STRUCTURE
+   Use these classes when removing banner inline styles:
+   .saw-banner-video-layer
+   .saw-banner-video
+   .saw-banner-video-overlay
+   .saw-banner-foreground
+========================= */
+.banner__section {
+  position: relative;
+  overflow: hidden;
+}
+
+.saw-banner-video-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.saw-banner-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.saw-banner-video-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.saw-banner-foreground {
+  position: relative;
+  z-index: 1;
+}
+
+.banner__thumb img {
+  height: 75vh;
+  width: auto;
+  max-width: none;
+  transform: none;
+}
+
+/* =========================
+   HEADER / NAV STRUCTURE
+========================= */
+.header-section {
+  position: relative;
+  z-index: 9999;
+}
+
+.header-wrapper {
+  position: relative;
+  z-index: 9999;
+}
+
+.main-menu {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main-menu > li {
+  position: relative;
+}
+
+.main-menu > li > a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  letter-spacing: 0.2px;
+  transition:
+    color 0.24s ease,
+    transform 0.24s ease,
+    text-shadow 0.24s ease;
+}
+
+.main-menu > li > a::after {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 7px;
+  height: 2px;
+  border-radius: 99px;
+  opacity: 0;
+  transform: scaleX(0.35);
+  transform-origin: center;
+  transition:
+    opacity 0.24s ease,
+    transform 0.24s ease;
+}
+
+.main-menu > li:hover > a,
+.main-menu > li:focus-within > a {
+  transform: translateY(-1px);
+}
+
+.main-menu > li:hover > a::after,
+.main-menu > li:focus-within > a::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.main-menu > li.has-dropdown > a {
+  cursor: default;
+}
+
+.main-menu > li.has-dropdown > a .dropdown-caret {
+  display: inline-block;
+  margin-left: 7px;
+  font-size: 12px;
+  transform: translateY(1px);
+  transition: transform 0.24s ease;
+}
+
+.main-menu > li.has-dropdown:hover > a .dropdown-caret,
+.main-menu > li.has-dropdown:focus-within > a .dropdown-caret {
+  transform: translateY(1px) rotate(180deg);
+}
+
+.main-menu .sub-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  min-width: 335px;
+  max-width: 390px;
+  padding: 14px;
+  margin: 0;
+  list-style: none;
+  border-radius: 22px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(8px) scale(0.97);
+  pointer-events: none;
+  transition:
+    opacity 0.22s ease,
+    visibility 0.22s ease,
+    transform 0.22s ease;
+}
+
+.main-menu .sub-menu::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.main-menu > li:hover > .sub-menu,
+.main-menu > li:focus-within > .sub-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.main-menu .sub-menu li {
+  margin: 0;
+  padding: 0;
+}
+
+.main-menu .sub-menu li + li {
+  margin-top: 7px;
+}
+
+.main-menu .sub-menu li a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: 100%;
+  padding: 12px 14px 12px 16px;
+  border-radius: 15px;
+  font-size: 14.5px;
+  line-height: 1.25;
+  text-decoration: none;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    color 0.22s ease,
+    background 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease,
+    transform 0.22s ease;
+}
+
+.main-menu .sub-menu li a::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.main-menu .sub-menu li a::after {
+  content: "›";
+  margin-left: auto;
+  font-size: 22px;
+  line-height: 1;
+  transform: translateX(-5px);
+  opacity: 0;
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease;
+}
+
+.main-menu .sub-menu li a:hover,
+.main-menu .sub-menu li a:focus {
+  transform: translateX(4px);
+}
+
+.main-menu .sub-menu li a:hover::before,
+.main-menu .sub-menu li a:focus::before {
+  transform: scale(1.25);
+}
+
+.main-menu .sub-menu li a:hover::after,
+.main-menu .sub-menu li a:focus::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.main-menu .sub-menu li.menu-featured a::before {
+  width: 10px;
+  height: 10px;
+}
+
+.main-menu .sub-menu li.menu-divider {
+  margin-top: 12px;
+  padding-top: 12px;
+}
+
+/* =========================
+   SOCIAL PROOF STRUCTURE
+========================= */
+.social-proof-widget {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 0 auto 14px auto;
+  flex-wrap: wrap;
+  text-align: center;
+  width: 100%;
+}
+
+.social-proof-faces {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  overflow: visible;
+  padding: 4px 0;
+}
+
+.social-proof-avatar-group {
+  display: flex;
+  position: relative;
+  height: 56px;
+  padding-left: 15px;
+  justify-content: center;
+}
+
+.social-proof-face {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  position: relative;
+  margin-left: -14px;
+  object-fit: cover;
+  display: block;
+  flex: 0 0 auto;
+}
+
+.social-proof-face:first-child {
+  margin-left: 0;
+}
+
+.social-proof-face:hover {
+  transform: scale(1.08);
+  z-index: 10;
+}
+
+.social-proof-stars {
+  border-radius: 12px;
+  font-size: 0.85em;
+  padding: 2px 8px;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+}
+
+/* =========================
+   PROMO / WEBSITE SALES SECTION STRUCTURE
+========================= */
+#promo-499 {
+  padding: 90px 0 120px;
+  overflow: hidden;
+}
+
+#promo-499 .container {
+  margin-top: 42px;
+}
+
+#promo-499 .saw-wide-media {
+  width: 100%;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+#promo-499 .saw-wide-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 18px;
+}
+
+#promo-499 .saw-preview-caption {
+  margin: 14px auto 0;
+  max-width: 980px;
+  text-align: center;
+  line-height: 1.65;
+  font-style: italic;
+  font-size: 1rem;
+}
+
+#promo-499 .saw-eyebrow {
+  display: inline-block;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  padding: 10px 14px;
+  border-radius: 999px;
+}
+
+#promo-499 .saw-title {
+  max-width: 1040px;
+  margin: 16px auto 14px;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  font-size: clamp(34px, 5vw, 68px);
+}
+
+#promo-499 .saw-copy {
+  font-size: 1.08rem;
+  line-height: 1.78;
+  max-width: 980px;
+  margin: 0 auto 14px auto;
+}
+
+#promo-499 .saw-build-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 34px;
+}
+
+#promo-499 .saw-build-card {
+  position: relative;
+  border-radius: 24px;
+  padding: 26px;
+  overflow: hidden;
+}
+
+#promo-499 .saw-build-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 5px;
+}
+
+#promo-499 .saw-build-icon {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+
+#promo-499 .saw-build-icon i {
+  font-size: 32px;
+  line-height: 1;
+}
+
+#promo-499 .saw-build-card h2 {
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  margin: 0 0 10px;
+  font-size: clamp(24px, 2.4vw, 34px);
+}
+
+#promo-499 .saw-build-card p {
+  font-size: 1rem;
+  line-height: 1.68;
+  margin: 0 0 16px;
+}
+
+#promo-499 .saw-build-card ul,
+#promo-499 .saw-feature ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 9px;
+}
+
+#promo-499 .saw-build-card ul {
+  margin-bottom: 18px;
+}
+
+#promo-499 .saw-build-card li,
+#promo-499 .saw-feature li {
+  position: relative;
+  padding-left: 26px;
+  line-height: 1.45;
+}
+
+#promo-499 .saw-feature li {
+  line-height: 1.55;
+}
+
+#promo-499 .saw-build-card li::before,
+#promo-499 .saw-feature li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+#promo-499 .saw-price-line {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0 0 18px;
+}
+
+#promo-499 .saw-price-line strong {
+  font-size: 42px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+#promo-499 .saw-transition-panel {
+  margin-top: 28px;
+  padding: 24px;
+  border-radius: 24px;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+#promo-499 .saw-transition-icon {
+  width: 62px;
+  height: 62px;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+}
+
+#promo-499 .saw-transition-icon i {
+  font-size: 30px;
+}
+
+#promo-499 .saw-transition-panel h2 {
+  margin: 0 0 8px;
+  font-size: clamp(24px, 3vw, 38px);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+#promo-499 .saw-transition-panel p {
+  margin: 0;
+  line-height: 1.7;
+  font-size: 1.03rem;
+}
+
+#promo-499 .saw-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+#promo-499 .saw-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 66px;
+  padding: 18px 26px;
+  border-radius: 16px;
+  text-decoration: none;
+  font-size: 20px;
+  line-height: 1.08;
+  white-space: nowrap;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease, filter 0.15s ease;
+}
+
+#promo-499 .saw-btn:hover {
+  transform: translateY(-2px);
+}
+
+#promo-499 .saw-note {
+  margin-top: 12px;
+  font-size: 0.96rem;
+  text-align: center;
+}
+
+#promo-499 .saw-divider {
+  height: 1px;
+  margin: 34px 0 28px;
+  border: 0;
+}
+
+#promo-499 .saw-h2 {
+  margin: 0 0 10px;
+  letter-spacing: -0.02em;
+}
+
+#promo-499 .saw-muted {
+  margin: 0 0 18px;
+}
+
+#promo-499 .saw-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px;
+  margin-top: 18px;
+}
+
+#promo-499 .saw-feature {
+  grid-column: span 6;
+  border-radius: 18px;
+  padding: 18px;
+}
+
+#promo-499 .saw-feature h3 {
+  margin: 0 0 10px;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#promo-499 .saw-badge {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+#promo-499 .saw-tw-block {
+  margin: 30px auto 0;
+  max-width: 1120px;
+  border-radius: 24px;
+  padding: clamp(18px, 2.6vw, 34px);
+}
+
+#promo-499 .saw-tw-media {
+  width: 100%;
+  margin: 0 auto;
+}
+
+#promo-499 .saw-tw-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px;
+}
+
+#promo-499 .saw-tw-caption {
+  margin-top: 10px;
+  text-align: right;
+  font-style: italic;
+  font-size: 0.92rem;
+}
+
+#promo-499 .saw-tw-h2 {
+  margin: 18px 0 12px;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  text-align: left;
+  font-size: clamp(28px, 4vw, 52px);
+}
+
+#promo-499 .saw-tw-copy {
+  margin: 0 0 13px;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  text-align: left;
+}
+
+#promo-499 .saw-tw-highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 22px;
+}
+
+#promo-499 .saw-tw-highlight {
+  border-radius: 18px;
+  padding: 18px;
+}
+
+#promo-499 .saw-tw-highlight i {
+  display: inline-flex;
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+#promo-499 .saw-tw-highlight h3 {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+}
+
+#promo-499 .saw-tw-highlight p {
+  margin: 0;
+  line-height: 1.55;
+  font-size: 0.96rem;
+}
+
+#promo-499 .saw-tw-cta {
+  margin-top: 22px;
+}
+
+/* =========================
+   COMPLETE SYSTEM ADDON STRUCTURE
+   Add classes during HTML cleanup for best results:
+   .saw-complete-system-addon__accent-line
+   .saw-complete-system-addon__pattern
+   .saw-complete-system-addon__inner
+   .saw-complete-system-addon__top
+   .saw-complete-system-addon__price
+   .saw-complete-system-addon__grid
+   .saw-complete-system-addon__card
+   .saw-complete-system-addon__icon
+========================= */
+.saw-complete-system-addon {
+  position: relative;
+  margin-top: 58px;
+  padding: 32px;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.saw-complete-system-addon__accent-line {
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 3px;
+  pointer-events: none;
+}
+
+.saw-complete-system-addon__pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.12;
+  pointer-events: none;
+  background-size: 28px 28px;
+  mask-image: radial-gradient(circle at center, black 0%, transparent 72%);
+  -webkit-mask-image: radial-gradient(circle at center, black 0%, transparent 72%);
+}
+
+.saw-complete-system-addon__inner {
+  position: relative;
+  z-index: 2;
+}
+
+.saw-complete-system-addon__top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.saw-complete-system-addon__copy {
+  max-width: 760px;
+}
+
+.saw-complete-system-addon__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 14px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.saw-complete-system-addon h3 {
+  margin: 0 0 10px 0;
+  font-size: clamp(30px, 4vw, 50px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.saw-complete-system-addon p {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.65;
+  max-width: 76ch;
+}
+
+.saw-complete-system-addon__price {
+  min-width: 220px;
+  padding: 18px;
+  border-radius: 22px;
+}
+
+.saw-complete-system-addon__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.saw-complete-system-addon__card {
+  position: relative;
+  padding: 24px;
+  border-radius: 26px;
+  overflow: hidden;
+}
+
+.saw-complete-system-addon__icon {
+  position: relative;
+  z-index: 2;
+  width: 62px;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  margin-bottom: 16px;
+}
+
+.saw-complete-system-addon__icon i {
+  font-size: 27px;
+}
+
+.saw-complete-system-addon h4 {
+  font-size: 23px;
+  line-height: 1.12;
+  margin: 0 0 10px 0;
+}
+
+.saw-complete-system-addon__cta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.saw-complete-system-addon__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 54px;
+  padding: 15px 22px;
+  border-radius: 999px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* =========================
+   RESPONSIVE STRUCTURE
+========================= */
+@media (max-width: 991px) {
+  .main-menu {
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .main-menu > li > a {
+    width: 100%;
+  }
+
+  .main-menu .sub-menu {
+    position: static;
+    left: auto;
+    top: auto;
+    min-width: 100%;
+    max-width: 100%;
+    margin-top: 8px;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    pointer-events: auto;
+    display: none;
+    border-radius: 18px;
+  }
+
+  .main-menu .sub-menu::before {
+    display: none;
+  }
+
+  .main-menu > li:hover > .sub-menu,
+  .main-menu > li:focus-within > .sub-menu {
+    display: block;
+    transform: none;
+  }
+
+  .main-menu .sub-menu li a:hover,
+  .main-menu .sub-menu li a:focus {
+    transform: none;
+  }
+
+  #promo-499 {
+    padding: 70px 0 90px !important;
+  }
+
+  #promo-499 .saw-wide-media {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+
+  #promo-499 .saw-build-options {
+    grid-template-columns: 1fr;
+  }
+
+  #promo-499 .saw-feature {
+    grid-column: span 12;
+  }
+
+  #promo-499 .saw-tw-highlight-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #promo-499 .saw-btn {
+    font-size: 18px;
+    min-height: 62px;
+    padding: 17px 22px;
+  }
+
+  #promo-499 .saw-transition-panel {
+    flex-direction: column;
+  }
+
+  .saw-complete-system-addon {
+    margin-top: 38px !important;
+    padding: 24px 18px !important;
+    border-radius: 24px !important;
+  }
+
+  .saw-complete-system-addon h3 {
+    font-size: 34px !important;
+  }
+
+  .saw-complete-system-addon__grid,
+  .saw-complete-system-addon [style*="grid-template-columns: repeat(3"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  .saw-complete-system-addon__cta-row,
+  .saw-complete-system-addon [style*="justify-content: space-between"] {
+    align-items: flex-start !important;
+  }
+
+  .saw-complete-system-addon a {
+    width: 100% !important;
+    white-space: normal !important;
+    text-align: center !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .social-proof-avatar-group {
+    height: 50px;
+  }
+
+  .social-proof-face {
+    width: 40px;
+    height: 40px;
+    margin-left: -12px;
+  }
+}
+
+@media (max-width: 576px) {
+  #promo-499 {
+    padding: 54px 0 74px !important;
+  }
+
+  #promo-499 .saw-wide-media {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  #promo-499 .saw-wide-media img {
+    border-radius: 14px;
+  }
+
+  #promo-499 .saw-title {
+    font-size: 36px;
+  }
+
+  #promo-499 .saw-copy {
+    font-size: 1rem;
+  }
+
+  #promo-499 .saw-btn {
+    width: 100%;
+    max-width: 520px;
+    font-size: 18px;
+    min-height: 64px;
+    padding: 18px;
+    white-space: normal;
+    text-align: center;
+  }
+
+  #promo-499 .saw-build-card {
+    padding: 22px 18px;
+  }
+
+  #promo-499 .saw-transition-panel {
+    padding: 20px;
+  }
+
+  #promo-499 .saw-tw-caption {
+    text-align: left;
+  }
+
+  .saw-complete-system-addon {
+    padding: 22px 14px !important;
+  }
+
+  .saw-complete-system-addon h3 {
+    font-size: 31px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .social-proof-face {
+    width: 34px;
+    height: 34px;
+    margin-left: -10px;
+  }
+
+  .social-proof-stars {
+    margin-top: 2px;
+  }
+}

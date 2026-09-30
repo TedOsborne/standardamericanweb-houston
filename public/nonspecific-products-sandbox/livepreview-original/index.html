@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LivePreview</title>
+  <link rel="stylesheet" href="src/assets/css/loader.min.css">
+  <link rel="stylesheet" href="src/assets/css/font-awesome.min.css">
+  <link rel="stylesheet" href="src/assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="src/assets/css/theme-main-top.min.css">
+  <style>
+    html, body, .livepreview-wrap, .page { height: 100%; background: transparent !important; }
+    body { margin: 0; background-image: none !important; }
+    .livepreview-wrap .container {
+      width: 100%;
+      max-width: none;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    .iframe-wrap,
+    .livepreview-wrap .iframe-wrap .iframe { background: transparent !important; }
+    .blank-stage {
+      position: absolute; inset: 0; display: grid; place-items: center;
+      background: transparent;
+    }
+    .blank-stage span { color: transparent; user-select: none; }
+    .product-list .product { min-height: 180px; }
+    .product-list .demo { min-height: 135px; background: transparent; }
+    .product-list .demo img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 15 / 8;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+    }
+    .product-list .title { min-height: 24px; }
+    button.product-frame-close { padding: 0; border: 0; background: transparent; }
+    .livepreview-wrap .products-wrap .products { width: 100%; }
+    .livepreview-wrap .products-wrap .products .product-list .placeholder-grid {
+      display: grid !important;
+      grid-auto-flow: column;
+      grid-auto-columns: 42%;
+      grid-template-columns: none;
+      gap: 14px;
+      margin: 0;
+      padding: 4px 2px 14px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x proximity;
+      scrollbar-color: #ff6600 #151515;
+    }
+    .livepreview-wrap .products-wrap .products .product-list .placeholder-grid::-webkit-scrollbar { height: 10px; }
+    .livepreview-wrap .products-wrap .products .product-list .placeholder-grid::-webkit-scrollbar-track { background: #151515; }
+    .livepreview-wrap .products-wrap .products .product-list .placeholder-grid::-webkit-scrollbar-thumb {
+      border: 2px solid #151515;
+      border-radius: 999px;
+      background: #ff6600;
+    }
+    .livepreview-wrap .products-wrap .products .product-list .placeholder-grid::-webkit-scrollbar-thumb:hover { background: #ff7a22; }
+    .livepreview-wrap .products-wrap .products .product-list .placeholder-grid::before,
+    .livepreview-wrap .products-wrap .products .product-list .placeholder-grid::after { display: none !important; }
+    .livepreview-wrap .products-wrap .products .product-list .placeholder-grid > div {
+      width: auto;
+      padding: 0;
+      margin: 0;
+      scroll-snap-align: start;
+    }
+    @media (max-width: 1199px) {
+      .livepreview-wrap .products-wrap .products .product-list .placeholder-grid { grid-auto-columns: 60%; }
+    }
+    @media (max-width: 767px) {
+      .livepreview-wrap .products-wrap .products .product-list .placeholder-grid { grid-auto-columns: 88%; }
+    }
+    .livepreview-wrap .products-wrap .products .product-list .product,
+    .livepreview-wrap .products-wrap .products .product-list .product.active {
+      box-sizing: border-box;
+      padding: 10px 10px 5px;
+      border: 4px solid transparent;
+      background-image:
+        linear-gradient(#1a1a1a, #1a1a1a),
+        linear-gradient(#1a1a1a, #1a1a1a);
+      background-origin: padding-box, border-box;
+      background-clip: padding-box, border-box;
+      background-size: 100% 100%, 240% 240%;
+      background-position: 0 0, 0% 50%;
+      color: #fff;
+      transition: box-shadow .25s ease, transform .25s ease;
+    }
+    .livepreview-wrap .products-wrap .products .product-list .product:hover,
+    .livepreview-wrap .products-wrap .products .product-list .product:focus-within,
+    .livepreview-wrap .products-wrap .products .product-list .product.active:hover {
+      background-image:
+        linear-gradient(#1a1a1a, #1a1a1a),
+        linear-gradient(120deg, #09c509, #2dff6a, #00b43a, #ffb000, #ff9708, #ff6600, #ff2d00);
+      color: #fff;
+      box-shadow: 0 0 12px rgba(45, 255, 106, .24), 0 0 24px rgba(255, 102, 0, .48);
+      animation: saw-preview-card-border-shift 3.8s ease infinite;
+    }
+    @keyframes saw-preview-card-border-shift {
+      0% { background-position: 0 0, 0% 50%; }
+      50% { background-position: 0 0, 100% 50%; }
+      100% { background-position: 0 0, 0% 50%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .livepreview-wrap .products-wrap .products .product-list .product:hover,
+      .livepreview-wrap .products-wrap .products .product-list .product:focus-within { animation: none; }
+    }
+    .livepreview-wrap .products-wrap .products .product-list .product:hover .title,
+    .livepreview-wrap .products-wrap .products .product-list .product:focus-within .title,
+    .livepreview-wrap .products-wrap .products .product-list .product.active .title { color: #fff; }
+    .livepreview-wrap .products-wrap .products .product-list .product { cursor: pointer; }
+    .livepreview-wrap .products-wrap .products .product-list .product:focus-visible {
+      outline: 3px solid #ff6600;
+      outline-offset: 3px;
+    }
+    .seo-preview-card {
+      position: relative;
+      display: grid;
+      grid-template-columns: 34% 66%;
+      width: 100%;
+      aspect-ratio: 15 / 8;
+      overflow: hidden;
+      background: #1d2023;
+      color: #e9e9e9;
+      font-family: Arial, sans-serif;
+    }
+    .seo-preview-card__details {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      padding: 7% 7% 5%;
+      background: #292c30;
+    }
+    .seo-preview-card__details h3 {
+      margin: 0 0 7%;
+      color: #f3f3f3;
+      font-size: clamp(11px, 1vw, 20px);
+      line-height: 1.15;
+    }
+    .seo-preview-card__eyebrow { color: #49ca22; font-size: clamp(7px, .55vw, 11px); font-weight: 700; }
+    .seo-preview-card__price { margin: 3% 0 5%; font-size: clamp(15px, 1.45vw, 29px); font-weight: 800; line-height: 1; }
+    .seo-preview-card__details h4 { margin: 2% 0 4%; color: #fff; font-size: clamp(9px, .75vw, 15px); }
+    .seo-preview-card__details ul {
+      flex: 1 1 auto;
+      min-height: 0;
+      margin: 2% 0 5%;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      list-style: none;
+    }
+    .seo-preview-card__details li {
+      margin: 0;
+      color: #d1d3d4;
+      font-size: clamp(11px, .68vw, 15px);
+      line-height: 1.3;
+    }
+    .seo-preview-card__details li::before { content: "\2713"; margin-right: 5px; font-weight: 900; }
+    .seo-preview-card__button {
+      margin-top: auto;
+      padding: 6px 8px;
+      border: 1px solid #d5d5d5;
+      border-radius: 999px;
+      color: #fff;
+      font-size: clamp(6px, .48vw, 10px);
+      font-weight: 800;
+      line-height: 1.15;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .seo-preview-card__button:hover,
+    .seo-preview-card__button:focus { color: #49ca22; border-color: #49ca22; text-decoration: none; }
+    .seo-preview-card__visual { position: relative; min-width: 0; overflow: hidden; background: #000; }
+    .seo-preview-card__visual video,
+    .seo-preview-card__visual img {
+      position: absolute;
+      inset: 0;
+      width: 100% !important;
+      height: 100% !important;
+      aspect-ratio: auto !important;
+      object-position: center;
+    }
+    .seo-preview-card__visual video { object-fit: cover !important; }
+    .product-list .demo .seo-preview-card__visual img {
+      inset: 5% !important;
+      width: 90% !important;
+      height: 90% !important;
+      object-fit: contain !important;
+      object-position: center !important;
+      z-index: 1;
+    }
+    .product-list .demo.seo-service-card .seo-preview-card__visual img {
+      inset: auto auto 0 5% !important;
+      object-position: center bottom !important;
+    }
+    .product-list .demo.social-preview-card .seo-preview-card__visual img {
+      inset: 5% 0 auto auto !important;
+      object-position: right center !important;
+    }
+    .seo-preview-card__headline {
+      position: absolute;
+      z-index: 2;
+      top: 7%;
+      left: 5%;
+      max-width: 78%;
+      color: #f2f2f2;
+      font-size: clamp(12px, 1.2vw, 25px);
+      font-weight: 900;
+      font-style: italic;
+      line-height: 1.05;
+      text-transform: uppercase;
+      text-shadow: 0 2px 4px #000;
+    }
+    .seo-preview-card__headline strong { display: block; margin-top: 3%; font-size: 1.55em; }
+    .seo-preview-card__headline em { color: #f15801; font-style: inherit; }
+    .social-preview-card .seo-preview-card__eyebrow { color: #f60fc8; }
+    .social-preview-card .seo-preview-card__button:hover,
+    .social-preview-card .seo-preview-card__button:focus { color: #f60fc8; border-color: #f60fc8; }
+    .social-preview-card .seo-preview-card__headline em { color: #f60fc8; }
+    .staffing-preview-card .seo-preview-card__eyebrow { color: #46c418; }
+    .staffing-preview-card .seo-preview-card__button:hover,
+    .staffing-preview-card .seo-preview-card__button:focus { color: #46c418; border-color: #46c418; }
+    .staffing-preview-card .seo-preview-card__headline em { color: #46c418; }
+    .staffing-preview-card .staffing-role { display: block; color: #f1f1f1; font-weight: 800; }
+    .staffing-preview-card .staffing-rate { display: block; margin-top: 2px; color: #bdc0c2; font-size: .88em; }
+    .video-only-preview-card {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 15 / 8;
+      overflow: hidden;
+      background: #000;
+      container-type: inline-size;
+    }
+    .video-only-preview-card video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .video-only-preview-card::after {
+      position: absolute;
+      inset: 0;
+      content: "";
+      pointer-events: none;
+      background: linear-gradient(90deg, rgba(0, 0, 0, .58), rgba(0, 0, 0, .08) 70%);
+    }
+    .video-only-preview-card__headline {
+      position: absolute;
+      z-index: 2;
+      top: 8%;
+      left: 5%;
+      width: 90%;
+      max-width: none;
+      color: #f2f2f2;
+      font: 900 italic clamp(17px, 4.25cqw, 40px)/1.08 Arial, sans-serif;
+      text-transform: uppercase;
+      text-shadow: 0 2px 5px #000;
+    }
+    .video-only-preview-card__headline-line { display: block; white-space: nowrap; }
+    .video-only-preview-card__headline strong { display: block; margin-top: 3%; font-size: 1.55em; white-space: nowrap; }
+    .video-only-preview-card__headline em { color: #af8860; font-style: inherit; }
+    .video-only-preview-card__button {
+      position: absolute;
+      z-index: 3;
+      left: 5%;
+      bottom: 7%;
+      padding: 10px 18px;
+      border: 2px solid #ddd;
+      border-radius: 999px;
+      color: #fff;
+      background: rgba(15, 15, 15, .62);
+      font-size: clamp(10px, .75vw, 15px);
+      font-weight: 900;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .video-only-preview-card__button:hover,
+    .video-only-preview-card__button:focus { color: #af8860; border-color: #af8860; text-decoration: none; }
+    .review-management-preview-card .video-only-preview-card__headline em { color: #2b8cee; }
+    .review-management-preview-card .video-only-preview-card__button:hover,
+    .review-management-preview-card .video-only-preview-card__button:focus { color: #2b8cee; border-color: #2b8cee; }
+    .review-management-preview-card__stars {
+      position: absolute;
+      z-index: 2;
+      top: 36%;
+      left: 5%;
+      color: #f0b12e;
+      font-size: clamp(22px, 4.5cqw, 42px);
+      letter-spacing: .12em;
+      text-shadow: 0 2px 4px #000;
+    }
+    .ai-employees-preview-card .video-only-preview-card__headline em { color: #35c9ff; }
+    .ai-employees-preview-card .video-only-preview-card__button:hover,
+    .ai-employees-preview-card .video-only-preview-card__button:focus { color: #35c9ff; border-color: #35c9ff; }
+    .leadspark-preview-card .video-only-preview-card__headline em { color: #ff6600; }
+    .leadspark-preview-card .video-only-preview-card__button:hover,
+    .leadspark-preview-card .video-only-preview-card__button:focus { color: #ff6600; border-color: #ff6600; }
+    .business-preview-card .seo-preview-card__eyebrow,
+    .business-preview-card .seo-preview-card__headline em { color: #46c418; }
+    .business-preview-card .seo-preview-card__button:hover,
+    .business-preview-card .seo-preview-card__button:focus { color: #46c418; border-color: #46c418; }
+    .product-list .demo.business-preview-card .seo-preview-card__visual img {
+      inset: auto 0 0 auto !important;
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      object-position: right bottom !important;
+    }
+    .wordpress-preview-card { grid-template-columns: 66% 34%; }
+    .wordpress-preview-card .seo-preview-card__eyebrow,
+    .wordpress-preview-card .seo-preview-card__headline em { color: #098cff; }
+    .wordpress-preview-card .seo-preview-card__button:hover,
+    .wordpress-preview-card .seo-preview-card__button:focus { color: #098cff; border-color: #098cff; }
+    .product-list .demo.wordpress-preview-card .seo-preview-card__visual img {
+      inset: 0 0 0 auto !important;
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      object-position: right center !important;
+    }
+    .shopify-preview-card .seo-preview-card__eyebrow,
+    .shopify-preview-card .seo-preview-card__headline em { color: #8ab542; }
+    .shopify-preview-card .seo-preview-card__button:hover,
+    .shopify-preview-card .seo-preview-card__button:focus { color: #8ab542; border-color: #8ab542; }
+    .product-list .demo.shopify-preview-card .seo-preview-card__visual img {
+      inset: auto 0 0 auto !important;
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      object-position: right bottom !important;
+    }
+    .redesign-preview-card .video-only-preview-card__headline em { color: #46c418; }
+    .redesign-preview-card .video-only-preview-card__button:hover,
+    .redesign-preview-card .video-only-preview-card__button:focus { color: #46c418; border-color: #46c418; }
+    .redesign-service-card .seo-preview-card__eyebrow,
+    .redesign-service-card .seo-preview-card__headline em { color: #d9ad32; }
+    .redesign-service-card .seo-preview-card__button:hover,
+    .redesign-service-card .seo-preview-card__button:focus { color: #d9ad32; border-color: #d9ad32; }
+    .redesign-service-card .seo-preview-card__details { background: linear-gradient(145deg, #111d28, #202932); }
+    .redesign-service-card .seo-preview-card__price small { display: block; margin-top: 5px; color: #d9ad32; font-size: .42em; letter-spacing: .04em; text-transform: uppercase; }
+    .redesign-service-card__terms { margin: .7em 0 0; padding: .65em .75em; border-left: 3px solid #ff6600; background: rgba(255,102,0,.09); color: #e3e3e3; font-size: clamp(8px, 1.25cqw, 12px); line-height: 1.35; }
+    .bundle-preview-card .seo-preview-card__eyebrow,
+    .bundle-preview-card .seo-preview-card__headline em { color: #46c418; }
+    .bundle-preview-card .seo-preview-card__button:hover,
+    .bundle-preview-card .seo-preview-card__button:focus { color: #46c418; border-color: #46c418; }
+    .bundle-preview-card .seo-preview-card__price small { display: block; margin-top: 5px; color: #c6c9cb; font-size: .38em; line-height: 1.2; }
+    .product-list .demo.bundle-preview-card .seo-preview-card__visual img {
+      inset: auto 0 0 auto !important;
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      object-position: right bottom !important;
+    }
+    .redesign-preview-card::after {
+      background: linear-gradient(90deg, rgba(5, 7, 8, .92) 0%, rgba(5, 7, 8, .68) 46%, rgba(5, 7, 8, .08) 78%);
+    }
+    .redesign-preview-card .video-only-preview-card__headline { top: 19%; width: 82%; }
+    .redesign-preview-card .video-only-preview-card__headline strong { font-size: 1.35em; }
+    .redesign-preview-card__kicker {
+      position: absolute;
+      z-index: 3;
+      top: 7%;
+      left: 5%;
+      padding: .5em .85em;
+      border-left: 3px solid #ff6600;
+      color: #ff8a3d;
+      background: rgba(0, 0, 0, .48);
+      font: 800 clamp(9px, 1.8cqw, 17px)/1 Arial, sans-serif;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .redesign-preview-card__benefits {
+      position: absolute;
+      z-index: 3;
+      left: 5%;
+      bottom: 22%;
+      display: flex;
+      gap: .55em;
+      color: #f5f5f5;
+      font: 700 clamp(8px, 1.55cqw, 14px)/1 Arial, sans-serif;
+    }
+    .redesign-preview-card__benefits span { padding: .55em .75em; border: 1px solid rgba(255,255,255,.3); background: rgba(0,0,0,.52); }
+    .livepreview-wrap .products-wrap .products .pagination ul > li.active,
+    .livepreview-wrap .products-wrap .products .pagination ul > li:hover { border-color: #ff6600; }
+    .livepreview-wrap .products-wrap .products .pagination ul > li.active a,
+    .livepreview-wrap .products-wrap .products .pagination ul > li:hover a { color: #ff6600; }
+    .livepreview-wrap .btn.btn-primary,
+    .livepreview-wrap .btn.btn-primary:hover,
+    .livepreview-wrap .btn.btn-primary:focus {
+      background-color: #ff6600;
+      border-bottom-color: #c94f00;
+    }
+    .livepreview-wrap .header .product-toggle .product-name {
+      color: #c8c8c8;
+      font-weight: 800;
+      letter-spacing: .02em;
+      padding: 0 24px;
+      text-align: center;
+    }
+    .livepreview-wrap .header .product-toggle { text-align: center; }
+    .placeholder-grid > .is-filtered-out { display: none !important; }
+    .livepreview-wrap .products-wrap .products .filters .filter a.active,
+    .livepreview-wrap .products-wrap .products .filters .filter a.active span,
+    .livepreview-wrap .products-wrap .products .filters .filter a:hover,
+    .livepreview-wrap .products-wrap .products .filters .filter a:hover span { color: #ff6600; }
+    .filter-years a { font-weight: 800; }
+  </style>
+</head>
+<body class="page-loaded iframe-loaded products-active">
+  <div class="livepreview-wrap">
+    <div class="page">
+      <div id="header" class="header">
+        <div class="container">
+          <div class="row">
+            <div class="hidden-xs col-sm-2 col-md-2">
+              <span class="logo"><img src="https://standardamericanweb.com/images/logo-daylight-fire-orange-sm.png" alt="Standard American Web"></span>
+            </div>
+            <div class="col-xs-5 col-sm-6 col-md-4">
+              <div id="product-toggle" class="product-toggle active" role="button" tabindex="0" aria-expanded="true">
+                <span id="product-name" class="product-name">Click Here to Hide Our Services</span>
+                <span class="product-btn">
+                  <i class="product-show fa fa-angle-down"></i>
+                  <i class="product-hide fa fa-angle-up"></i>
+                </span>
+              </div>
+            </div>
+            <div class="col-xs-7 col-sm-4 col-md-6">
+              <div class="product-toolbar clearfix">
+                <button id="product-frame-close" class="product-frame-close" type="button" aria-label="Close preview"><i class="fa fa-close"></i></button>
+                <div class="product-buttons">
+                  <a class="btn btn-primary hidden-sm hidden-xs" href="https://bit.ly/SAW-LeadSpark-Business-Automations" target="_blank" rel="noopener noreferrer">LeadSpark</a>
+                  <a class="btn btn-success" href="tel:16016401512">Call Us</a>
+                </div>
+                <div id="product-devices" class="product-devices hidden-sm hidden-xs">
+                  <a href="#" class="desktop active" data-device="desktop" title="Desktop"></a>
+                  <a href="#" class="tabletlandscape" data-device="tabletlandscape" title="Tablet Landscape"></a>
+                  <a href="#" class="tabletportrait" data-device="tabletportrait" title="Tablet Portrait"></a>
+                  <a href="#" class="mobilelandscape" data-device="mobilelandscape" title="Mobile Landscape"></a>
+                  <a href="#" class="mobileportrait" data-device="mobileportrait" title="Mobile Portrait"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="products" class="products-wrap" aria-hidden="false">
+        <div class="container">
+          <div class="products">
+            <div id="filters" class="filters hidden-xs">
+              <div class="row">
+                <div class="col-sm-7">
+                  <div class="filter filter-tags">
+                    <ul>
+                      <li><a class="active" href="#" data-filter="all">All Services <span>(12)</span></a></li>
+                      <li><a href="#" data-filter="web-design">Web Design <span>(4)</span></a></li>
+                      <li><a href="#" data-filter="marketing">Marketing <span>(4)</span></a></li>
+                      <li><a href="#" data-filter="ai-automation">AI &amp; Automation <span>(2)</span></a></li>
+                      <li><a href="#" data-filter="business-support">Business Support <span>(2)</span></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-sm-3"><div class="filter filter-search"><input type="text" placeholder="Search" disabled></div></div>
+                <div class="col-sm-2"><div class="filter filter-years"><ul><li><a href="https://bit.ly/SAW-Awards-n-Accolades" target="_blank" rel="noopener noreferrer">Awards</a></li></ul></div></div>
+              </div>
+            </div>
+            <div id="product-list" class="product-list">
+              <div class="row active show placeholder-grid">
+                <div class="col-xs-6"><div class="product"><div class="demo seo-preview-card seo-service-card">
+                  <div class="seo-preview-card__details">
+                    <h3>SEO: Search Engine Optimization</h3>
+                    <span class="seo-preview-card__eyebrow">SEO Packages Starting At Just:</span>
+                    <div class="seo-preview-card__price">$350<sup>.00</sup> <small>p/Month</small></div>
+                    <h4>What is included:</h4>
+                    <ul>
+                      <li>5 Keyphrases optimized</li>
+                      <li>10 Pages optimized</li>
+                      <li>Google Analytics Installing</li>
+                      <li>Schema / Rich Snippets</li>
+                      <li>Full page tag system</li>
+                    </ul>
+                    <a class="seo-preview-card__button" href="https://bit.ly/SAW-SEO-Services-And-SoLoMo" target="_top">More About Getting Ranked on Google</a>
+                  </div>
+                  <div class="seo-preview-card__visual">
+                    <video autoplay muted loop playsinline preload="metadata"><source src="https://bundles.standardamericanweb.com/dub-landing-pg/myself-niche/media/video-seo.mp4" type="video/mp4"></video>
+                    <img src="https://bundles.standardamericanweb.com/dub-landing-pg/myself-niche/images/background/bg15-seo.png" alt="SEO rocket launching into Google search visibility">
+                    <div class="seo-preview-card__headline">Need to <em>rank fast</em> in <strong>Google Search?</strong></div>
+                  </div>
+                </div><h3 class="title"><span>SEO Services &amp; SoLoMo</span></h3></div></div>
+                <div class="col-xs-6"><div class="product"><div class="demo seo-preview-card social-preview-card">
+                  <div class="seo-preview-card__details">
+                    <h3>SocialBiz: Social Media Marketing</h3>
+                    <span class="seo-preview-card__eyebrow">SocialBiz Lite Starting As Low As:</span>
+                    <div class="seo-preview-card__price">$649<sup>.99</sup></div>
+                    <span class="seo-preview-card__eyebrow">Or $220 p/Month with 6 Month Contract</span>
+                    <h4>What is included:</h4>
+                    <ul>
+                      <li>3 Accounts Managed</li>
+                      <li>Custom Strategy &amp; Engaging Posts</li>
+                      <li>90 Days Reporting &amp; Analytics</li>
+                      <li>Profile Hero Images</li>
+                      <li>Engaging Follower Responses</li>
+                    </ul>
+                    <a class="seo-preview-card__button" href="https://bit.ly/SAW-SocialBiz-Marketing-and-Managing" target="_top">More About Stress-Free Social Media</a>
+                  </div>
+                  <div class="seo-preview-card__visual">
+                    <video autoplay muted loop playsinline preload="metadata"><source src="https://bundles.standardamericanweb.com/dub-landing-pg/myself-niche/media/001-socialbiz.mp4" type="video/mp4"></video>
+                    <img src="https://bundles.standardamericanweb.com/dub-landing-pg/myself-niche/images/background/001-socialbiz.png" alt="SocialBiz social media marketing displayed on a smartphone">
+                    <div class="seo-preview-card__headline">Do you need <em>social media marketing?</em><strong>SocialBiz</strong></div>
+                  </div>
+                </div><h3 class="title"><span>SocialBiz Marketing &amp; Management</span></h3></div></div>
+                <div class="col-xs-6"><div class="product"><div class="demo seo-preview-card staffing-preview-card">
+                  <div class="seo-preview-card__details">
+                    <h3>Remote Staffing</h3>
+                    <span class="seo-preview-card__eyebrow">Starting As Low As</span>
+                    <div class="seo-preview-card__price">$3<sup>.20</sup> <small>Per Hour</small></div>
+                    <h4>Available Remote Help:</h4>
+                    <ul>
+                      <li><span class="staffing-role">Remote Website Designer</span><span class="staffing-rate">$3.20/hour, full 40-hour week</span></li>
+                      <li><span class="staffing-role">Remote Web Developer</span><span class="staffing-rate">$6.40/hour, full 40-hour week</span></li>
+                      <li><span class="staffing-role">Remote Webmaster</span><span class="staffing-rate">$15.25/hour, full 40-hour week</span></li>
+                      <li><span class="staffing-role">Hire-a-Geek Work Hour</span><span class="staffing-rate">$37.50/hour, five-hour minimum</span></li>
+                    </ul>
+                    <a class="seo-preview-card__button" href="https://bit.ly/SAW-Hire-A-Geek-Hour" target="_top">See How Affordable Remote Developers Can Be</a>
+                  </div>
+                  <div class="seo-preview-card__visual">
+                    <video autoplay muted loop playsinline preload="metadata"><source src="https://bundles.standardamericanweb.com/dub-landing-pg/media/Matrix-Rain-Plus-Developer-Optimized.mp4" type="video/mp4"></video>
+                    <div class="seo-preview-card__headline">Do you need a <em>web developer</em> on staff?<strong>Remote Staffing</strong></div>
+                  </div>
+                </div><h3 class="title"><span>Remote Staffing &amp; Hire-a-Geek</span></h3></div></div>
+                <div class="col-xs-6"><div class="product"><div class="demo video-only-preview-card content-strategy-preview-card">
+                  <video autoplay muted loop playsinline preload="metadata"><source src="https://bundles.standardamericanweb.com/dub-landing-pg/myself-niche/media/Content-Strategy-Video-optimized.mp4" type="video/mp4"></video>
+                  <div class="video-only-preview-card__headline"><span class="video-only-preview-card__headline-line">Unlock the solid <em>power of</em></span><strong>A Content Strategy!</strong></div>
+                  <a class="video-only-preview-card__button" href="https://bundles.standardamericanweb.com/dub-landing-pg/myself-niche/content-strategy-index.html" target="_top">Explore Content Strategy</a>
+                </div><h3 class="title"><span>Content Strategy</span></h3></div></div>
+                <div class="col-xs-6"><div class="product"><div class="demo video-only-preview-card review-management-preview-card">
+                  <video autoplay muted loop playsinline preload="metadata"><source src="https://bundles.standardamericanweb.com/dub-landing-pg/myself-niche/media/video-google-reputation-management.mp4" type="video/mp4"></video>
+                  <div class="video-only-preview-card__headline"><span class="video-only-preview-card__headline-line">Do you need <em>help managing your</em></span><strong>Google Reviews?</strong></div>
+                  <div class="review-management-preview-card__stars" aria-label="Five-star review management">★★★★★</div>
+                  <a class="video-only-preview-card__button" href="https://bundles.standardamericanweb.com/dub-landing-pg/myself-niche/reputation-review-management-index.html" target="_top">Manage Your Google Reviews</a>
+                </div><h3 class="title"><span>Google Review Management</span></h3></div></div>
+                <div class="col-xs-6"><div class="product"><div class="demo video-only-preview-card ai-employees-preview-card">
+                  <video autoplay muted loop playsinline preload="metadata"><source src="https://standardamericanweb.com/videos/ai-employees.mp4" type="video/mp4"></video>
+                  <div class="video-only-preview-card__headline"><span class="video-only-preview-card__headline-line">Build your team <em>without the overhead</em></span><strong>Meet Your AI Employees</strong></div>
+                  <a class="video-only-preview-card__button" href="https://bit.ly/SAW-AI-Employees-from-LeadSpark" target="_top">See What AI Employees Can Do</a>
+                </div><h3 class="title"><span>AI Employees</span></h3></div></div>
+                <div class="col-xs-6"><div class="product"><div class="demo video-only-preview-card leadspark-preview-card">
+                  <video autoplay muted loop playsinline preload="metadata"><source src="https://standardamericanweb.com/videos/ai-business-automations.mp4" type="video/mp4"></video>
+                  <div class="video-only-preview-card__headline"><span class="video-only-preview-card__headline-line">Turn busywork into <em>business growth</em></span><strong>Automate With LeadSpark</strong></div>
+                  <a class="video-only-preview-card__button" href="https://bit.ly/SAW-LeadSpark-Business-Automations" target="_top">Put My Business on Autopilot</a>
+                </div><h3 class="title"><span>LeadSpark Automated Business Systems</span></h3></div></div>
+                <div class="col-xs-6"><div class="product"><div class="demo seo-preview-card business-preview-card">
+                  <div class="seo-preview-card__details">
+                    <h3>Small Business Websites</h3><span class="seo-preview-card__eyebrow">Starting As Low As</span>
+                    <div class="seo-preview-card__price">$1499<sup>.99</sup></div><h4>What is included:</h4>
+                    <ul><li>3 Page Website</li><li>Form Integration</li><li>Speed Optimized</li><li>5 Stock Photos</li><li>Social Media Integration</li></ul>
+                    <a class="seo-preview-card__button" href="https://bit.ly/SAW-Business-Website-Educational-Pg" target="_top">Build My Professional Website</a>
+                  </div><div class="seo-preview-card__visual">
+                    <video autoplay muted loop playsinline preload="metadata"><source src="https://standardamericanweb.com/videos/code-writing.mp4" type="video/mp4"></video>
+                    <img src="https://standardamericanweb.com/images/web-designer-2-PNG.png" alt="Professional website designer">
+                    <div class="seo-preview-card__headline">Stand out from <em>your competitors</em> with a<strong>Professional Website?</strong></div>
+                  </div>
+                </div><h3 class="title"><span>Business Website Development</span></h3></div></div>
+                <div class="col-xs-6"><div class="product"><div class="demo seo-preview-card wordpress-preview-card">
+                  <div class="seo-preview-card__visual">
+                    <video autoplay muted loop playsinline preload="metadata"><source src="https://bundles.standardamericanweb.com/dub-landing-pg/myself-niche/media/001-wordpress.mp4" type="video/mp4"></video>
+                    <img src="https://bundles.standardamericanweb.com/dub-landing-pg/myself-niche/images/background/001-wordpress.png" alt="WordPress development">
+                    <div class="seo-preview-card__headline">So you've <em>decided on</em> a<strong>WordPress Theme?</strong></div>
+                  </div><div class="seo-preview-card__details">
+                    <h3>WordPress Theme Development</h3><span class="seo-preview-card__eyebrow">Starting As Low As</span>
+                    <div class="seo-preview-card__price">$1999<sup>.99</sup></div><h4>What is included:</h4>
+                    <ul><li>FREE SSL for a year</li><li>Domain name &amp; 3 Pages</li><li>3 Standard Plugins</li><li>5 Stock Photos</li><li>Social Media Integration</li></ul>
+                    <a class="seo-preview-card__button" href="https://bit.ly/SAW-WordPress-Educational-Landing-Pg" target="_top">Explore WordPress Development</a>
+                  </div>
+                </div><h3 class="title"><span>WordPress Development</span></h3></div></div>
+                <div class="col-xs-6"><div class="product"><div class="demo seo-preview-card shopify-preview-card">
+                  <div class="seo-preview-card__details">
+                    <h3>Online Store Development</h3><span class="seo-preview-card__eyebrow">Starting As Low As</span>
+                    <div class="seo-preview-card__price">$749<sup>.99</sup></div><h4>What is included:</h4>
+                    <ul><li>3 Pages</li><li>10 Products Setup</li><li>2 Plugins</li><li>15 Digital Images</li><li>Social Media Integration</li></ul>
+                    <a class="seo-preview-card__button" href="https://bit.ly/SAW-Shopify-Dev-Educational-Pg" target="_top">Launch My Online Store</a>
+                  </div><div class="seo-preview-card__visual">
+                    <video autoplay muted loop playsinline preload="metadata"><source src="https://bundles.standardamericanweb.com/dub-landing-pg/myself-niche/media/video-shopify.mp4" type="video/mp4"></video>
+                    <img src="https://bundles.standardamericanweb.com/dub-landing-pg/myself-niche/images/background/bg11-b.png" alt="Shopify online store development">
+                    <div class="seo-preview-card__headline">Need help with your <em>Shopify</em><strong>Online Store?</strong></div>
+                  </div>
+                </div><h3 class="title"><span>Online Store Development</span></h3></div></div>
+                <div class="col-xs-6"><div class="product"><div class="demo seo-preview-card redesign-service-card">
+                  <div class="seo-preview-card__details">
+                    <h3>Website Redesign</h3>
+                    <span class="seo-preview-card__eyebrow">Limited-Time 67% Off</span>
+                    <div class="seo-preview-card__price">$1,100<small>One-Time Payment</small></div>
+                    <h4>Built to make your business:</h4>
+                    <ul>
+                      <li>Look modern, credible, and easier to trust</li>
+                      <li>Convert more visitors with clearer calls-to-action</li>
+                      <li>Perform beautifully across mobile devices</li>
+                      <li>Load faster with a cleaner SEO foundation</li>
+                      <li>Guide customers through a stronger user journey</li>
+                    </ul>
+                    <p class="redesign-service-card__terms"><strong>Offer requirement:</strong> We must reuse only the content and images from your original website. This promotion must be purchased through the cart on this page.</p>
+                    <a class="seo-preview-card__button" href="#" data-open-redesign-cart>Claim My 67% Redesign Discount</a>
+                  </div>
+                  <div class="seo-preview-card__visual">
+                    <video autoplay muted loop playsinline preload="metadata"><source src="https://standardamericanweb.com/videos/website-redesign.mp4" type="video/mp4"></video>
+                    <div class="seo-preview-card__headline">Outdated website?<strong>Redesign for <em>More Trust &amp; Conversions</em></strong></div>
+                  </div>
+                </div><h3 class="title"><span>Website Redesign</span></h3></div></div>
+                <div class="col-xs-6"><div class="product"><div class="demo seo-preview-card bundle-preview-card">
+                  <div class="seo-preview-card__details">
+                    <h3>Small Business Development Bundle</h3>
+                    <span class="seo-preview-card__eyebrow">All-Inclusive Starting At</span>
+                    <div class="seo-preview-card__price">$450<sup>.00</sup><small>$900 down + $450/month for 9 months</small></div>
+                    <h4>Everything you need to grow:</h4>
+                    <ul>
+                      <li>Professional 3-page business website</li>
+                      <li>SocialBiz Lite marketing support</li>
+                      <li>Conversion-focused content strategy</li>
+                      <li>Basic search engine optimization</li>
+                      <li>Google Business Profile setup</li>
+                    </ul>
+                    <a class="seo-preview-card__button" href="https://bit.ly/SAW-Business-In-A-Box-Bundles" target="_top">Bundle My Business Services</a>
+                  </div>
+                  <div class="seo-preview-card__visual">
+                    <video autoplay muted loop playsinline preload="metadata"><source src="https://bundles.standardamericanweb.com/dub-landing-pg/myself-niche/media/video-website-development.mp4" type="video/mp4"></video>
+                    <img src="https://bundles.standardamericanweb.com/dub-landing-pg/myself-niche/images/background/bg11-website-development.png" alt="Small business development bundle">
+                    <div class="seo-preview-card__headline">Not sure what you need? <em>Try our</em><strong>Business-in-a-Box Bundle</strong></div>
+                  </div>
+                </div><h3 class="title"><span>Business-in-a-Box Bundle</span></h3></div></div>
+              </div>
+            </div>
+            <div class="pagination"><ul><li class="nav prev"><a href="#"><i class="fa fa-angle-left"></i></a></li><li class="active"><a href="#">1</a></li><li class="nav next"><a href="#"><i class="fa fa-angle-right"></i></a></li></ul></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="iframe-wrap">
+        <div id="preview-frame" class="iframe desktop"><div class="blank-stage"><span>Blank preview</span></div></div>
+      </div>
+    </div>
+  </div>
+  <script src="src/assets/js/lib/jquery.min.js"></script>
+  <script>
+    (function ($) {
+      var $body = $('body');
+      var $toggle = $('#product-toggle');
+      function toggleProducts() {
+        var open = !$body.hasClass('products-active');
+        $body.toggleClass('products-active', open);
+        $toggle.toggleClass('active', open).attr('aria-expanded', open ? 'true' : 'false');
+        $('#product-name').text(open ? 'Click Here to Hide Our Services' : 'Click Here to View Our Services');
+        $('#products').attr('aria-hidden', open ? 'false' : 'true');
+      }
+      $toggle.on('click', toggleProducts).on('keydown', function (event) {
+        if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggleProducts(); }
+      });
+      $('#products').on('click', function (event) { if (event.target === this) toggleProducts(); });
+      $('[data-open-redesign-cart]').on('click', function (event) {
+        event.preventDefault();
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage({ type: 'saw-livepreview-redesign-cart' }, '*');
+        }
+      });
+      $('#product-devices a').on('click', function (event) {
+        event.preventDefault();
+        var device = $(this).data('device');
+        $('#product-devices a').removeClass('active');
+        $(this).addClass('active');
+        $('#preview-frame').removeClass('desktop tabletlandscape tabletportrait mobilelandscape mobileportrait').addClass(device);
+      });
+      var $rail = $('.placeholder-grid');
+      var $cards = $rail.children('.col-xs-6');
+      var categoryMap = [
+        { selector: '.business-preview-card, .wordpress-preview-card, .shopify-preview-card, .redesign-service-card', category: 'web-design' },
+        { selector: '.seo-service-card, .social-preview-card, .content-strategy-preview-card, .review-management-preview-card', category: 'marketing' },
+        { selector: '.ai-employees-preview-card, .leadspark-preview-card', category: 'ai-automation' },
+        { selector: '.staffing-preview-card, .bundle-preview-card', category: 'business-support' }
+      ];
+      $cards.each(function () {
+        var $card = $(this);
+        $.each(categoryMap, function (_, item) {
+          if ($card.find(item.selector).length) $card.attr('data-category', item.category);
+        });
+        var $product = $card.find('.product').first();
+        var cardLabel = $.trim($product.find('.title').text()) || 'Open service page';
+        $product.attr({ role: 'link', tabindex: '0', 'aria-label': cardLabel });
+      });
+      function followCardLink(product) {
+        var $link = $(product).find('.seo-preview-card__button, .video-only-preview-card__button').first();
+        if (!$link.length) return;
+        if ($link.is('[data-open-redesign-cart]')) {
+          $link.trigger('click');
+          return;
+        }
+        window.top.location.href = $link[0].href;
+      }
+      $rail.on('click', '.product', function (event) {
+        if ($(event.target).closest('a').length) return;
+        followCardLink(this);
+      });
+      $rail.on('keydown', '.product', function (event) {
+        if (event.target !== this || (event.key !== 'Enter' && event.key !== ' ')) return;
+        event.preventDefault();
+        followCardLink(this);
+      });
+      $('#filters [data-filter]').on('click', function (event) {
+        event.preventDefault();
+        var category = $(this).data('filter');
+        $('#filters [data-filter]').removeClass('active').attr('aria-selected', 'false');
+        $(this).addClass('active').attr('aria-selected', 'true');
+        $cards.each(function () {
+          var show = category === 'all' || $(this).attr('data-category') === category;
+          $(this).toggleClass('is-filtered-out', !show).attr('aria-hidden', show ? 'false' : 'true');
+          $(this).find('video').each(function () { if (show) this.play().catch(function () {}); else this.pause(); });
+        });
+        $rail.scrollLeft(0);
+      });
+      $('.pagination a').on('click', function (event) { event.preventDefault(); });
+      $('#product-frame-close').on('click', function () { window.parent.postMessage({ type: 'saw-livepreview-close' }, '*'); });
+    }(jQuery));
+  </script>
+</body>
+</html>
